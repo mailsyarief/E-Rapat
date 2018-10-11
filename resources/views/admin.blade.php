@@ -12,7 +12,7 @@
                 </div>
                 @endif
                 <div class="alert alert-success">
-                    <p>You're logged in as USERS</p>
+                    <p>You're logged in as ADMINISTRATOR</p>
                 </div>
             </div>
         </div>
