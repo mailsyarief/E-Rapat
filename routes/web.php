@@ -22,11 +22,18 @@ Route::group(['middleware' =>['web','auth']], function(){
 	Route::get('/', function(){
 		return view('welcome');
 	});
-
+// role 0 = dosen
+// role 1 = tenaga pendidik
+// role 2 = admin
 	Route::get('/home', function(){
-		if(Auth::user()->admin==0){
+		if(Auth::user()->role==0){
 			return view('home');
-		} else {
+		} 
+		if(Auth::user()->role==1){
+			$users['users'] = \App\User::all();
+			return view('tendik', $users);
+		}
+		else {
 			$users['users'] = \App\User::all();
 			return view('admin', $users);
 		}
