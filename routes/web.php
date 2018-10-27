@@ -20,7 +20,7 @@ Auth::routes();
 
 Route::group(['middleware' =>['web','auth']], function(){
 	Route::get('/', function(){
-		return view('welcome');
+		return view('home');
 	});
 // role 0 = dosen
 // role 1 = tenaga pendidik

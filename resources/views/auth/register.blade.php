@@ -26,6 +26,39 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="nik" class="col-md-4 col-form-label text-md-right">{{ __('NIK') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="nik" type="text" class="form-control{{ $errors->has('nik') ? ' is-invalid' : '' }}" name="nik" value="{{ old('nik') }}" required autofocus>
+
+                                @if ($errors->has('nik'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('nik') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('Status') }}</label>
+
+                            <div class="col-md-6">
+                                {{-- <input id="status" type="text" class="form-control{{ $errors->has('status') ? ' is-invalid' : '' }}" name="status" value="{{ old('status') }}" required autofocus> --}}
+                                <select id="status" class="form-control{{ $errors->has('status')}}" name="status">
+                                    <option value="Tenaga Pengajar">Tenaga Pengajar</option>
+                                    <option value="Dosen">Dosen</option>
+                                </select>
+
+                                @if ($errors->has('nik'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('nik') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
@@ -60,7 +93,6 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

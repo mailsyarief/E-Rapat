@@ -1,62 +1,51 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>StartUI - Premium Bootstrap 4 Admin Dashboard Template</title>
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="img/favicon.144x144.png" rel="apple-touch-icon" type="image/png" sizes="144x144">
+    <link href="img/favicon.114x114.png" rel="apple-touch-icon" type="image/png" sizes="114x114">
+    <link href="img/favicon.72x72.png" rel="apple-touch-icon" type="image/png" sizes="72x72">
+    <link href="img/favicon.57x57.png" rel="apple-touch-icon" type="image/png">
+    <link href="img/favicon.png" rel="icon" type="image/png">
+    <link href="img/favicon.ico" rel="shortcut icon">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="css/lib/lobipanel/lobipanel.min.css">
-    <link rel="stylesheet" href="css/separate/vendor/lobipanel.min.css">
-    <link rel="stylesheet" href="css/lib/jqueryui/jquery-ui.min.css">
-    <link rel="stylesheet" href="css/separate/pages/widgets.min.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<link rel="stylesheet" href="css/lib/lobipanel/lobipanel.min.css">
+<link rel="stylesheet" href="css/separate/vendor/lobipanel.min.css">
+<link rel="stylesheet" href="css/lib/jqueryui/jquery-ui.min.css">
+<link rel="stylesheet" href="css/separate/pages/widgets.min.css">
     <link rel="stylesheet" href="css/lib/font-awesome/font-awesome.min.css">
     <link rel="stylesheet" href="css/lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
-
-    <!-- Styles -->
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<body class="with-side-menu control-panel control-panel-compact @if(!Auth::check()) sidebar-hidden @endif ">
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                @if (Route::has('register'))
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                @endif
-                            </li>
-                        @else
-                            <li class="dropdown">
+    <header class="site-header">
+        <div class="container-fluid">
+            <a href="#" class="site-logo">
+                <h3 class="mr-3">E Rapat</h3>
+            </a>
+    
+            <button id="show-hide-sidebar-toggle" class="show-hide-sidebar">
+                <span>toggle menu</span>
+            </button>
+    
+            <button class="hamburger hamburger--htla">
+                <span>toggle menu</span>
+            </button>
+            <div class="site-header-content">
+                <div class="site-header-content-in">
+                    <div class="site-header-shown">
+                        <div class="dropdown">
+                        @if(Auth::check())
                                 <button class="btn btn-rounded dropdown-toggle" id="dd-header-add" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->name }}
                                 </button>
@@ -70,45 +59,62 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-                                </div>
-                            </li>
-{{--                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li> --}}
-                        @endguest
-                    </ul>
+                                </div>                            
+                        @endif
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
+        </div>
+    </header>
 
+    @if(Auth::check())
+        <div class="mobile-menu-left-overlay"></div>
+        <nav class="side-menu">
+            <ul class="side-menu-list">
+                <li class="blue">
+                    <a href="project.html">
+                        <i class="fa fa-pencil"></i>
+                        <span class="lbl">Buat Rapat</span>
+                    </a>
+                </li>
+                <li class="gold">
+                    <a href="project.html">
+                        <i class="fa fa-book"></i>
+                        <span class="lbl">Kelola Rapat</span>
+                    </a>
+                </li>
+                <li class="green">
+                    <a href="project.html">
+                        <i class="fa fa-search"></i>
+                        <span class="lbl">Cari Rapat</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>    
+    @endif
 
-        <main class="py-4">
+    <div class="page-content">
+        <div class="container-fluid">
             @yield('content')
-        </main>
-    </div>
+        </div><!--.container-fluid-->
+    </div><!--.page-content-->
+
     <script src="js/lib/jquery/jquery-3.2.1.min.js"></script>
     <script src="js/lib/popper/popper.min.js"></script>
     <script src="js/lib/tether/tether.min.js"></script>
     <script src="js/lib/bootstrap/bootstrap.min.js"></script>
     <script src="js/plugins.js"></script>
 
+    <script src="js/lib/datatables-net/datatables.min.js"></script>
+    
     <script type="text/javascript" src="js/lib/jqueryui/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js/lib/lobipanel/lobipanel.min.js"></script>
     <script type="text/javascript" src="js/lib/match-height/jquery.matchHeight.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+
+<script src="js/app.js"></script>
 </body>
 </html>
