@@ -73,7 +73,7 @@
         <nav class="side-menu">
             <ul class="side-menu-list">
                 <li class="blue">
-                    <a href="project.html">
+                    <a href="{{ url('buat-rapat') }}">
                         <i class="fa fa-pencil"></i>
                         <span class="lbl">Buat Rapat</span>
                     </a>

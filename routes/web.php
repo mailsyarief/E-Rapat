@@ -38,4 +38,7 @@ Route::group(['middleware' =>['web','auth']], function(){
 			return view('admin', $users);
 		}
 	});
+
+	Route::get('/buat-rapat', 'RapatController@buat_rapat');
+
 });
