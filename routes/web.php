@@ -14,31 +14,27 @@
 
 Auth::routes();
 
-//Route::get('/', 'HomeController@index')->name('home');
-//Route::get('/home', 'HomeController@index')->name('home');
-//Route::get('admin/routes', 'HomeController@admin')->middleware('admin');
+// Route::group(['middleware' =>['web','auth']], function(){
+// 	Route::get('/', function(){
+// 		return view('home');
+// 	});
+// 	Route::get('/home', function(){
+// 		if(Auth::user()->role==0){
+// 			return view('home');
+// 		} 
+// 		if(Auth::user()->role==1){
+// 			$users['users'] = \App\User::all();
+// 			return view('tendik', $users);
+// 		}
+// 		else {
+// 			$users['users'] = \App\User::all();
+// 			return view('admin', $users);
+// 		}
+// 	});
 
-Route::group(['middleware' =>['web','auth']], function(){
-	Route::get('/', function(){
-		return view('home');
-	});
-// role 0 = dosen
-// role 1 = tenaga pendidik
-// role 2 = admin
-	Route::get('/home', function(){
-		if(Auth::user()->role==0){
-			return view('home');
-		} 
-		if(Auth::user()->role==1){
-			$users['users'] = \App\User::all();
-			return view('tendik', $users);
-		}
-		else {
-			$users['users'] = \App\User::all();
-			return view('admin', $users);
-		}
-	});
+Route::get('/', 'UserController@index');
+Route::get('/buat-rapat', 'UserController@buat_rapat');
 
-	Route::get('/buat-rapat', 'RapatController@buat_rapat');
 
-});
+Route::post('/new-rapat', 'RapatController@create');
+

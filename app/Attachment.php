@@ -12,7 +12,6 @@ class Attachment extends Model
         'rapats_id','at_title','at_path',
     ];
 
-
     public function Rapat(){
     	return $this->belongsTo('App\Rapat', 'rapats_id');
     }
