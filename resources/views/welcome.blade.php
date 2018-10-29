@@ -1,808 +1,1434 @@
-{{-- <!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>E-Rapat</title>
-
-        <!-- Fonts -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/neat.min.css') }}">
-        <script type="text/javascript" src="{{ asset('js/neat.min.js') }}"></script>
-
-    </head>
-    <body class="o-page">
-        
-        <!-- Notice `.js-page-sidebar` used for toggling sidebar via javascript -->
-        <aside class="o-page__sidebar js-page-sidebar"></aside>
-
-        <main class="o-page__content">
-            
-        </main>
-    </body>
-</html>
- --}}
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Dashboard Three | Neat</title>
-    <meta name="description" content="Neat">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>StartUI - Premium Bootstrap 4 Admin Dashboard Template</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="img/favicon.144x144.png" rel="apple-touch-icon" type="image/png" sizes="144x144">
+    <link href="img/favicon.114x114.png" rel="apple-touch-icon" type="image/png" sizes="114x114">
+    <link href="img/favicon.72x72.png" rel="apple-touch-icon" type="image/png" sizes="72x72">
+    <link href="img/favicon.57x57.png" rel="apple-touch-icon" type="image/png">
+    <link href="img/favicon.png" rel="icon" type="image/png">
+    <link href="img/favicon.ico" rel="shortcut icon">
 
-    <!-- Favicon -->
-{{--     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
- --}}
-    <!-- Stylesheet -->
-    {{-- <link rel="stylesheet" href="css/neat.min.css?v=1.0"> --}}
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/neat.min.css') }}">
-    <script type="text/javascript" src="{{ asset('js/neat.min.js') }}"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<link rel="stylesheet" href="css/lib/lobipanel/lobipanel.min.css">
+{{-- <link rel="stylesheet" href="{{ asset('css/lib/lobipanel/lobipanel.min.css') }}"> --}}
+<link rel="stylesheet" href="css/separate/vendor/lobipanel.min.css">
+<link rel="stylesheet" href="css/lib/jqueryui/jquery-ui.min.css">
+<link rel="stylesheet" href="css/separate/pages/widgets.min.css">
+<link rel="stylesheet" href="css/lib/font-awesome/font-awesome.min.css">
+<link rel="stylesheet" href="css/lib/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="css/main.css">
 
-  </head>
-  <body>
+</head>
+<body class="with-side-menu control-panel control-panel-compact">
 
-    <div class="o-page">
-      <div class="o-page__sidebar js-page-sidebar">
-        <aside class="c-sidebar">
-          <div class="c-sidebar__brand">
-            <h2>E-Rapat</h2>
-          </div>
+    <header class="site-header">
+        <div class="container-fluid">
+            <a href="#" class="site-logo">
+                <img class="hidden-md-down" src="img/logo-2.png" alt="">
+                <img class="hidden-lg-down" src="img/logo-2-mob.png" alt="">
+            </a>
+    
+            <button id="show-hide-sidebar-toggle" class="show-hide-sidebar">
+                <span>toggle menu</span>
+            </button>
+    
+            <button class="hamburger hamburger--htla">
+                <span>toggle menu</span>
+            </button>
+            <div class="site-header-content">
+                <div class="site-header-content-in">
+                    <div class="site-header-shown">
+                        <div class="dropdown dropdown-notification notif">
+                            <a href="#"
+                               class="header-alarm dropdown-toggle active"
+                               id="dd-notification"
+                               data-toggle="dropdown"
+                               aria-haspopup="true"
+                               aria-expanded="false">
+                                <i class="font-icon-alarm"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-notif" aria-labelledby="dd-notification">
+                                <div class="dropdown-menu-notif-header">
+                                    Notifications
+                                    <span class="label label-pill label-danger">4</span>
+                                </div>
+                                <div class="dropdown-menu-notif-list">
+                                    <div class="dropdown-menu-notif-item">
+                                        <div class="photo">
+                                            <img src="img/photo-64-1.jpg" alt="">
+                                        </div>
+                                        <div class="dot"></div>
+                                        <a href="#">Morgan</a> was bothering about something
+                                        <div class="color-blue-grey-lighter">7 hours ago</div>
+                                    </div>
+                                    <div class="dropdown-menu-notif-item">
+                                        <div class="photo">
+                                            <img src="img/photo-64-2.jpg" alt="">
+                                        </div>
+                                        <div class="dot"></div>
+                                        <a href="#">Lioneli</a> had commented on this <a href="#">Super Important Thing</a>
+                                        <div class="color-blue-grey-lighter">7 hours ago</div>
+                                    </div>
+                                    <div class="dropdown-menu-notif-item">
+                                        <div class="photo">
+                                            <img src="img/photo-64-3.jpg" alt="">
+                                        </div>
+                                        <div class="dot"></div>
+                                        <a href="#">Xavier</a> had commented on the <a href="#">Movie title</a>
+                                        <div class="color-blue-grey-lighter">7 hours ago</div>
+                                    </div>
+                                    <div class="dropdown-menu-notif-item">
+                                        <div class="photo">
+                                            <img src="img/photo-64-4.jpg" alt="">
+                                        </div>
+                                        <a href="#">Lionely</a> wants to go to <a href="#">Cinema</a> with you to see <a href="#">This Movie</a>
+                                        <div class="color-blue-grey-lighter">7 hours ago</div>
+                                    </div>
+                                </div>
+                                <div class="dropdown-menu-notif-more">
+                                    <a href="#">See more</a>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="dropdown dropdown-notification messages">
+                            <a href="#"
+                               class="header-alarm dropdown-toggle active"
+                               id="dd-messages"
+                               data-toggle="dropdown"
+                               aria-haspopup="true"
+                               aria-expanded="false">
+                                <i class="font-icon-mail"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-messages" aria-labelledby="dd-messages">
+                                <div class="dropdown-menu-messages-header">
+                                    <ul class="nav" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active"
+                                               data-toggle="tab"
+                                               href="#tab-incoming"
+                                               role="tab">
+                                                Inbox
+                                                <span class="label label-pill label-danger">8</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link"
+                                               data-toggle="tab"
+                                               href="#tab-outgoing"
+                                               role="tab">Outbox</a>
+                                        </li>
+                                    </ul>
+                                    <!--<button type="button" class="create">
+                                        <i class="font-icon font-icon-pen-square"></i>
+                                    </button>-->
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab-incoming" role="tabpanel">
+                                        <div class="dropdown-menu-messages-list">
+                                            <a href="#" class="mess-item">
+                                                <span class="avatar-preview avatar-preview-32"><img src="img/photo-64-2.jpg" alt=""></span>
+                                                <span class="mess-item-name">Tim Collins</span>
+                                                <span class="mess-item-txt">Morgan was bothering about something!</span>
+                                            </a>
+                                            <a href="#" class="mess-item">
+                                                <span class="avatar-preview avatar-preview-32"><img src="img/avatar-2-64.png" alt=""></span>
+                                                <span class="mess-item-name">Christian Burton</span>
+                                                <span class="mess-item-txt">Morgan was bothering about something! Morgan was bothering about something.</span>
+                                            </a>
+                                            <a href="#" class="mess-item">
+                                                <span class="avatar-preview avatar-preview-32"><img src="img/photo-64-2.jpg" alt=""></span>
+                                                <span class="mess-item-name">Tim Collins</span>
+                                                <span class="mess-item-txt">Morgan was bothering about something!</span>
+                                            </a>
+                                            <a href="#" class="mess-item">
+                                                <span class="avatar-preview avatar-preview-32"><img src="img/avatar-2-64.png" alt=""></span>
+                                                <span class="mess-item-name">Christian Burton</span>
+                                                <span class="mess-item-txt">Morgan was bothering about something...</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab-outgoing" role="tabpanel">
+                                        <div class="dropdown-menu-messages-list">
+                                            <a href="#" class="mess-item">
+                                                <span class="avatar-preview avatar-preview-32"><img src="img/avatar-2-64.png" alt=""></span>
+                                                <span class="mess-item-name">Christian Burton</span>
+                                                <span class="mess-item-txt">Morgan was bothering about something! Morgan was bothering about something...</span>
+                                            </a>
+                                            <a href="#" class="mess-item">
+                                                <span class="avatar-preview avatar-preview-32"><img src="img/photo-64-2.jpg" alt=""></span>
+                                                <span class="mess-item-name">Tim Collins</span>
+                                                <span class="mess-item-txt">Morgan was bothering about something! Morgan was bothering about something.</span>
+                                            </a>
+                                            <a href="#" class="mess-item">
+                                                <span class="avatar-preview avatar-preview-32"><img src="img/avatar-2-64.png" alt=""></span>
+                                                <span class="mess-item-name">Christian Burtons</span>
+                                                <span class="mess-item-txt">Morgan was bothering about something!</span>
+                                            </a>
+                                            <a href="#" class="mess-item">
+                                                <span class="avatar-preview avatar-preview-32"><img src="img/photo-64-2.jpg" alt=""></span>
+                                                <span class="mess-item-name">Tim Collins</span>
+                                                <span class="mess-item-txt">Morgan was bothering about something!</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dropdown-menu-notif-more">
+                                    <a href="#">See more</a>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="dropdown dropdown-lang">
+                            <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="flag-icon flag-icon-us"></span>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <div class="dropdown-menu-col">
+                                    <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-ru"></span>Русский</a>
+                                    <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-de"></span>Deutsch</a>
+                                    <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-it"></span>Italiano</a>
+                                    <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-es"></span>Español</a>
+                                    <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-pl"></span>Polski</a>
+                                    <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-li"></span>Lietuviu</a>
+                                </div>
+                                <div class="dropdown-menu-col">
+                                    <a class="dropdown-item current" href="#"><span class="flag-icon flag-icon-us"></span>English</a>
+                                    <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-fr"></span>Français</a>
+                                    <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-by"></span>Беларускi</a>
+                                    <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-ua"></span>Українська</a>
+                                    <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-cz"></span>Česky</a>
+                                    <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-ch"></span>中國</a>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="dropdown user-menu">
+                            <button class="dropdown-toggle" id="dd-user-menu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="img/avatar-2-64.png" alt="">
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd-user-menu">
+                                <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-user"></span>Profile</a>
+                                <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-cog"></span>Settings</a>
+                                <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-question-sign"></span>Help</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-log-out"></span>Logout</a>
+                            </div>
+                        </div>
+    
+                        <button type="button" class="burger-right">
+                            <i class="font-icon-menu-addl"></i>
+                        </button>
+                    </div><!--.site-header-shown-->
+    
+                    <div class="mobile-menu-right-overlay"></div>
+                    <div class="site-header-collapsed">
+                        <div class="site-header-collapsed-in">
+                            <div class="dropdown dropdown-typical">
+                                <div class="dropdown-menu" aria-labelledby="dd-header-sales">
+                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-home"></span>Quant and Verbal</a>
+                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-cart"></span>Real Gmat Test</a>
+                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-speed"></span>Prep Official App</a>
+                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-users"></span>CATprer Test</a>
+                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-comments"></span>Third Party Test</a>
+                                </div>
+                            </div>
+                            <div class="dropdown dropdown-typical">
+                                <a class="dropdown-toggle" id="dd-header-marketing" data-target="#" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="font-icon font-icon-cogwheel"></span>
+                                    <span class="lbl">Marketing automation</span>
+                                </a>
+    
+                                <div class="dropdown-menu" aria-labelledby="dd-header-marketing">
+                                    <a class="dropdown-item" href="#">Current Search</a>
+                                    <a class="dropdown-item" href="#">Search for Issues</a>
+                                    <div class="dropdown-divider"></div>
+                                    <div class="dropdown-header">Recent issues</div>
+                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-home"></span>Quant and Verbal</a>
+                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-cart"></span>Real Gmat Test</a>
+                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-speed"></span>Prep Official App</a>
+                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-users"></span>CATprer Test</a>
+                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-comments"></span>Third Party Test</a>
+                                    <div class="dropdown-more">
+                                        <div class="dropdown-more-caption padding">more...</div>
+                                        <div class="dropdown-more-sub">
+                                            <div class="dropdown-more-sub-in">
+                                                <a class="dropdown-item" href="#"><span class="font-icon font-icon-home"></span>Quant and Verbal</a>
+                                                <a class="dropdown-item" href="#"><span class="font-icon font-icon-cart"></span>Real Gmat Test</a>
+                                                <a class="dropdown-item" href="#"><span class="font-icon font-icon-speed"></span>Prep Official App</a>
+                                                <a class="dropdown-item" href="#"><span class="font-icon font-icon-users"></span>CATprer Test</a>
+                                                <a class="dropdown-item" href="#"><span class="font-icon font-icon-comments"></span>Third Party Test</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Import Issues from CSV</a>
+                                    <div class="dropdown-divider"></div>
+                                    <div class="dropdown-header">Filters</div>
+                                    <a class="dropdown-item" href="#">My Open Issues</a>
+                                    <a class="dropdown-item" href="#">Reported by Me</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Manage filters</a>
+                                    <div class="dropdown-divider"></div>
+                                    <div class="dropdown-header">Timesheet</div>
+                                    <a class="dropdown-item" href="#">Subscribtions</a>
+                                </div>
+                            </div>
+                            <div class="dropdown dropdown-typical">
+                                <a class="dropdown-toggle" id="dd-header-social" data-target="#" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="font-icon font-icon-share"></span>
+                                    <span class="lbl">Social media</span>
+                                </a>
+    
+                                <div class="dropdown-menu" aria-labelledby="dd-header-social">
+                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-home"></span>Quant and Verbal</a>
+                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-cart"></span>Real Gmat Test</a>
+                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-speed"></span>Prep Official App</a>
+                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-users"></span>CATprer Test</a>
+                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-comments"></span>Third Party Test</a>
+                                </div>
+                            </div>
+                            <div class="dropdown dropdown-typical">
+                                <a href="#" class="dropdown-toggle no-arr">
+                                    <span class="font-icon font-icon-page"></span>
+                                    <span class="lbl">Projects</span>
+                                    <span class="label label-pill label-danger">35</span>
+                                </a>
+                            </div>
+    
+                            <div class="dropdown dropdown-typical">
+                                <a class="dropdown-toggle" id="dd-header-form-builder" data-target="#" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="font-icon font-icon-pencil"></span>
+                                    <span class="lbl">Form builder</span>
+                                </a>
+    
+                                <div class="dropdown-menu" aria-labelledby="dd-header-form-builder">
+                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-home"></span>Quant and Verbal</a>
+                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-cart"></span>Real Gmat Test</a>
+                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-speed"></span>Prep Official App</a>
+                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-users"></span>CATprer Test</a>
+                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-comments"></span>Third Party Test</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn btn-rounded dropdown-toggle" id="dd-header-add" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Add
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dd-header-add">
+                                    <a class="dropdown-item" href="#">Quant and Verbal</a>
+                                    <a class="dropdown-item" href="#">Real Gmat Test</a>
+                                    <a class="dropdown-item" href="#">Prep Official App</a>
+                                    <a class="dropdown-item" href="#">CATprer Test</a>
+                                    <a class="dropdown-item" href="#">Third Party Test</a>
+                                </div>
+                            </div>
+                            <div class="help-dropdown">
+                                <button type="button">
+                                    <i class="font-icon font-icon-help"></i>
+                                </button>
+                                <div class="help-dropdown-popup">
+                                    <div class="help-dropdown-popup-side">
+                                        <ul>
+                                            <li><a href="#">Getting Started</a></li>
+                                            <li><a href="#" class="active">Creating a new project</a></li>
+                                            <li><a href="#">Adding customers</a></li>
+                                            <li><a href="#">Settings</a></li>
+                                            <li><a href="#">Importing data</a></li>
+                                            <li><a href="#">Exporting data</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="help-dropdown-popup-cont">
+                                        <div class="help-dropdown-popup-cont-in">
+                                            <div class="jscroll">
+                                                <a href="#" class="help-dropdown-popup-item">
+                                                    Lorem Ipsum is simply
+                                                    <span class="describe">Lorem Ipsum has been the industry's standard dummy text </span>
+                                                </a>
+                                                <a href="#" class="help-dropdown-popup-item">
+                                                    Contrary to popular belief
+                                                    <span class="describe">Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC</span>
+                                                </a>
+                                                <a href="#" class="help-dropdown-popup-item">
+                                                    The point of using Lorem Ipsum
+                                                    <span class="describe">Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text</span>
+                                                </a>
+                                                <a href="#" class="help-dropdown-popup-item">
+                                                    Lorem Ipsum
+                                                    <span class="describe">There are many variations of passages of Lorem Ipsum available</span>
+                                                </a>
+                                                <a href="#" class="help-dropdown-popup-item">
+                                                    Lorem Ipsum is simply
+                                                    <span class="describe">Lorem Ipsum has been the industry's standard dummy text </span>
+                                                </a>
+                                                <a href="#" class="help-dropdown-popup-item">
+                                                    Contrary to popular belief
+                                                    <span class="describe">Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC</span>
+                                                </a>
+                                                <a href="#" class="help-dropdown-popup-item">
+                                                    The point of using Lorem Ipsum
+                                                    <span class="describe">Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text</span>
+                                                </a>
+                                                <a href="#" class="help-dropdown-popup-item">
+                                                    Lorem Ipsum
+                                                    <span class="describe">There are many variations of passages of Lorem Ipsum available</span>
+                                                </a>
+                                                <a href="#" class="help-dropdown-popup-item">
+                                                    Lorem Ipsum is simply
+                                                    <span class="describe">Lorem Ipsum has been the industry's standard dummy text </span>
+                                                </a>
+                                                <a href="#" class="help-dropdown-popup-item">
+                                                    Contrary to popular belief
+                                                    <span class="describe">Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC</span>
+                                                </a>
+                                                <a href="#" class="help-dropdown-popup-item">
+                                                    The point of using Lorem Ipsum
+                                                    <span class="describe">Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text</span>
+                                                </a>
+                                                <a href="#" class="help-dropdown-popup-item">
+                                                    Lorem Ipsum
+                                                    <span class="describe">There are many variations of passages of Lorem Ipsum available</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!--.help-dropdown-->
+                            <a class="btn btn-nav btn-rounded btn-inline btn-danger-outline" href="http://themeforest.net/item/startui-premium-bootstrap-4-admin-dashboard-template/15228250?ref=themesanytime">
+                                Buy Theme
+                            </a>
+                            <div class="site-header-search-container">
+                                <form class="site-header-search closed">
+                                    <input type="text" placeholder="Search"/>
+                                    <button type="submit">
+                                        <span class="font-icon-search"></span>
+                                    </button>
+                                    <div class="overlay"></div>
+                                </form>
+                            </div>
+                        </div><!--.site-header-collapsed-in-->
+                    </div><!--.site-header-collapsed-->
+                </div><!--site-header-content-in-->
+            </div><!--.site-header-content-->
+        </div><!--.container-fluid-->
+    </header><!--.site-header-->
 
-          <!-- Scrollable -->
-          <div class="c-sidebar__body">
-            <span class="c-sidebar__title">General</span>
-            <ul class="c-sidebar__list">
-              <li>
-                <a class="c-sidebar__link" href="pipeline.html">
-                  <i class="c-sidebar__icon feather icon-move"></i>Pipeline
-                </a>
-              </li>
-              <li>
-                <a class="c-sidebar__link" href="calendar.html">
-                  <i class="c-sidebar__icon feather icon-calendar"></i>Calendar
-                </a>
-              </li>
-              <li>
-                <a class="c-sidebar__link" href="members.html">
-                  <i class="c-sidebar__icon feather icon-users"></i>Members
-                </a>
-              </li>
-              <li>
-                <a class="c-sidebar__link" href="invoice.html">
-                  <i class="c-sidebar__icon feather icon-file-text"></i>Single Invoice
-                </a>
-              </li>
-              <li>
-                <a class="c-sidebar__link" href="user-profile.html">
-                  <i class="c-sidebar__icon feather icon-user"></i>User
-                </a>
-
-                <!-- Always visible submenu -->
-                <ul class="c-sidebar__list">
-                  <li><a class="c-sidebar__link" href="index.html">Onboard</a></li>
-                  <li><a class="c-sidebar__link" href="account-settings.html">Account Settings</a></li>
-                  <li><a class="c-sidebar__link" href="signup.html">Sign Up</a></li>
-                  <li><a class="c-sidebar__link" href="signin.html">Sign In</a></li>
-                  <li><a class="c-sidebar__link" href="reset-password.html">Reset Password</a></li>
-                  <li><a class="c-sidebar__link" href="forgot-password.html">Forgot Password</a></li>
+    <div class="mobile-menu-left-overlay"></div>
+    <nav class="side-menu">
+        <ul class="side-menu-list">
+            <li class="grey with-sub">
+                <span>
+                    <i class="font-icon font-icon-dashboard"></i>
+                    <span class="lbl">Dashboard</span>
+                </span>
+                <ul>
+                    <li><a href="index.html"><span class="lbl">Default</span><span class="label label-custom label-pill label-danger">new</span></a></li>
+                    <li><a href="dashboard-top-menu.html"><span class="lbl">Top menu</span></a></li>
+                    <li><a href="side-menu-compact-full.html"><span class="lbl">Compact menu</span></a></li>
+                    <li><a href="dashboard-addl-menu.html"><span class="lbl">Submenu</span></a></li>
+                    <li><a href="side-menu-avatar.html"><span class="lbl">Menu with avatar</span></a></li>
+                    <li><a href="side-menu-avatar.html"><span class="lbl">Compact menu with avatar</span></a></li>
+                    <li><a href="dark-menu.html"><span class="lbl">Dark menu</span></a></li>
+                    <li><a href="dark-menu-blue.html"><span class="lbl">Blue dark menu</span></a></li>
+                    <li><a href="dark-menu-green.html"><span class="lbl">Green dark menu</span></a></li>
+                    <li><a href="dark-menu-green-compact.html"><span class="lbl">Green compact dark menu</span></a></li>
+                    <li><a href="dark-menu-ultramarine.html"><span class="lbl">Ultramarine dark menu</span></a></li>
+                    <li><a href="asphalt-menu.html"><span class="lbl">Asphalt top menu</span></a></li>
+                    <li><a href="side-menu-big-icon.html"><span class="lbl">Big menu</span></a></li>
                 </ul>
-              </li>
-              <li>
-                <a class="c-sidebar__link" href="pricing.html">
-                  <i class="c-sidebar__icon feather icon-tag"></i>Pricing
+            </li>
+            <li class="brown with-sub">
+                <span>
+                    <i class="font-icon glyphicon glyphicon-tint"></i>
+                    <span class="lbl">Skins</span>
+                </span>
+                <ul>
+                    <li><a href="theme-side-ebony-clay.html"><span class="lbl">Ebony Clay</span></a></li>
+                    <li><a href="theme-side-madison-caribbean.html"><span class="lbl">Madison Caribbean</span></a></li>
+                    <li><a href="theme-side-caesium-dark-caribbean.html"><span class="lbl">Caesium Dark Caribbean</span></a></li>
+                    <li><a href="theme-side-tin.html"><span class="lbl">Tin</span></a></li>
+                    <li><a href="theme-side-litmus-blue.html"><span class="lbl">Litmus Blue</span></a></li>
+                    <li><a href="theme-rebecca-purple.html"><span class="lbl">Rebecca Purple</span></a></li>
+                    <li><a href="theme-picton-blue.html"><span class="lbl">Picton Blue</span></a></li>
+                    <li><a href="theme-picton-blue-white-ebony.html"><span class="lbl">Picton Blue White Ebony</span></a></li>
+                </ul>
+            </li>
+            <li class="purple with-sub">
+                <span>
+                    <i class="font-icon font-icon-comments active"></i>
+                    <span class="lbl">Messages</span>
+                </span>
+                <ul>
+                    <li><a href="messenger.html"><span class="lbl">Messenger</span></a></li>
+                    <li><a href="chat.html"><span class="lbl">Messages</span><span class="label label-custom label-pill label-danger">8</span></a></li>
+                    <li><a href="chat-write.html"><span class="lbl">Write Message</span></a></li>
+                    <li><a href="chat-index.html"><span class="lbl">Select User</span></a></li>
+                </ul>
+            </li>
+            <li class="red">
+                <a href="mail.html">
+                    <i class="font-icon glyphicon glyphicon-send"></i>
+                    <span class="lbl">Mail</span>
                 </a>
-              </li>
-              <li>
-                <a class="c-sidebar__link" href="faq.html">
-                  <i class="c-sidebar__icon feather icon-info"></i>FAQ
+            </li>
+            <li class="gold with-sub">
+                <span>
+                    <i class="font-icon font-icon-edit"></i>
+                    <span class="lbl">Forms</span>
+                </span>
+                <ul>
+                    <li><a href="ui-form.html"><span class="lbl">Basic Inputs</span></a></li>
+                    <li><a href="ui-buttons.html"><span class="lbl">Buttons</span></a></li>
+                    <li><a href="ui-select.html"><span class="lbl">Select &amp; Tags</span></a></li>
+                    <li><a href="ui-checkboxes.html"><span class="lbl">Checkboxes &amp; Radios</span></a></li>
+                    <li><a href="ui-form-validation.html"><span class="lbl">Validation</span></a></li>
+                    <li><a href="typeahead.html"><span class="lbl">Typeahead</span></a></li>
+                    <li><a href="steps.html"><span class="lbl">Steps</span></a></li>
+                    <li><a href="ui-form-input-mask.html"><span class="lbl">Input Mask</span></a></li>
+                    <li><a href="form-flex-labels.html"><span class="lbl">Flex Labels</span></a></li>
+                    <li><a href="ui-form-extras.html"><span class="lbl">Extras</span></a></li>
+                </ul>
+            </li>
+            <li class="blue-dirty">
+                <a href="tables.html">
+                    <span class="glyphicon glyphicon-th"></span>
+                    <span class="lbl">Tables</span>
                 </a>
-              </li>
-              <li>
-                <a class="c-sidebar__link" href="404.html">
-                  <i class="c-sidebar__icon feather icon-anchor"></i>404
+            </li>
+            <li class="magenta with-sub">
+                <span>
+                    <span class="glyphicon glyphicon-list-alt"></span>
+                    <span class="lbl">Datatables</span>
+                </span>
+                <ul>
+                    <a href="datatables-net.html"><span class="lbl">Datatables.net</span></a></li>
+                    <a href="bootstrap-datatables.html"><span class="lbl">Bootstrap Table</span></a></li>
+    
+                    <!--<li><a href="datatables.html"><span class="lbl">Default</span></a></li>
+                    <li><a href="datatables-fixed-columns.html"><span class="lbl">Fixed Columns</span></a></li>
+                    <li><a href="datatables-reorder-rows.html"><span class="lbl">Reorder Rows</span></a></li>
+                    <li><a href="datatables-reorder-columns.html"><span class="lbl">Reorder Columns</span></a></li>
+                    <li><a href="datatables-resize-columns.html"><span class="lbl">Resize Columns</span></a></li>
+                    <li><a href="datatables-mobile.html"><span class="lbl">Mobile</span></a></li>
+                    <li><a href="datatables-filter-control.html"><span class="lbl">Filters</span></a></li>-->
+                </ul>
+            </li>
+            <li class="green with-sub">
+                <span>
+                    <i class="font-icon font-icon-widget"></i>
+                    <span class="lbl">Components</span>
+                </span>
+                <ul>
+                    <li><a href="widgets.html"><span class="lbl">Widgets</span></a></li>
+                    <li><a href="elements.html"><span class="lbl">Bootstrap UI</span></a></li>
+                    <li><a href="ui-datepicker.html"><span class="lbl">Date and Time Pickers</span></a></li>
+                    <li><a href="multipicker.html"><span class="lbl">Multi Picker</span></a></li>
+                    <li><a href="form-steps.html"><span class="lbl">Form Steps</span></a></li>
+                    <li><a href="components-upload.html"><span class="lbl">Upload</span></a></li>
+                    <li><a href="sweet-alerts.html"><span class="lbl">SweetAlert</span></a></li>
+                    <li><a href="color-picker.html"><span class="lbl">Color Picker</span></a></li>
+                    <li><a href="tabs.html"><span class="lbl">Tabs</span></a></li>
+                    <li><a href="panels.html"><span class="lbl">Panels</span></a></li>
+                    <li><a href="notifications.html"><span class="lbl">Notifications</span></a></li>
+                    <li><a href="range-slider.html"><span class="lbl">Sliders</span></a></li>
+                    <li><a href="editor-summernote.html"><span class="lbl">Editors</span></a></li>
+                    <li><a href="nestable.html"><span class="lbl">Nestable</span></a></li>
+                    <li><a href="blockui.html"><span class="lbl">BlockUI</span></a></li>
+                    <li><a href="alerts.html"><span class="lbl">Alerts</span></a></li>
+                    <li><a href="player.html"><span class="lbl">Players</span></a></li>
+                </ul>
+            </li>
+         <!--   <li class="gold">
+                <a href="#">
+                    <i class="font-icon font-icon-speed"></i>
+                    <span class="lbl">Performance</span>
                 </a>
-              </li>
-
-              <li class="c-sidebar__item has-submenu">
-                <a class="c-sidebar__link" data-toggle="collapse" href="#sidebar-submenu" aria-expanded="false" aria-controls="sidebar-submenu">
-                    <i class="c-sidebar__icon feather icon-hash"></i>Sub Menu
+            </li>-->
+            <li class="pink-red">
+                <a href="activity.html">
+                    <i class="font-icon font-icon-zigzag"></i>
+                    <span class="lbl">Activity</span>
                 </a>
-
-                <div>
-                  <ul class="c-sidebar__list collapse" id="sidebar-submenu">
-                    <li><a class="c-sidebar__link" href="#">Submenu link</a></li>
-                    <li><a class="c-sidebar__link" href="#">Submenu link</a></li>
-                    <li><a class="c-sidebar__link" href="#">Submenu link</a></li>
-                  </ul>
-                </div>
-                 
-              </li>
+            </li>
+            <li class="blue with-sub">
+                <span>
+                    <i class="font-icon font-icon-user"></i>
+                    <span class="lbl">Profile</span>
+                </span>
+                <ul>
+                    <li><a href="profile.html"><span class="lbl">Version 1</span></a></li>
+                    <li><a href="profile-2.html"><span class="lbl">Version 2</span></a></li>
+                </ul>
+            </li>
+            <li class="orange-red with-sub">
+                <span>
+                    <i class="font-icon font-icon-help"></i>
+                    <span class="lbl">Support</span>
+                </span>
+                <ul>
+                    <li><a href="documentation.html"><span class="lbl">Docs (example)</span></a></li>
+                    <li><a href="faq.html"><span class="lbl">FAQ Simple</span></a></li>
+                    <li><a href="faq-search.html"><span class="lbl">FAQ Search</span></a></li>
+                </ul>
+            </li>
+            <li class="red">
+                <a href="contacts.html" class="label-right">
+                    <i class="font-icon font-icon-contacts"></i>
+                    <span class="lbl">Contacts</span>
+                    <span class="label label-custom label-pill label-danger">35</span>
+                </a>
+            </li>
+            <li class="magenta opened">
+                <a href="scheduler.html">
+                    <i class="font-icon font-icon-calend"></i>
+                    <span class="lbl">Calendar</span>
+                </a>
+            </li>
+            <li class="grey with-sub">
+                <span>
+                    <span class="glyphicon glyphicon-duplicate"></span>
+                    <span class="lbl">Pages</span>
+                </span>
+                <ul>
+                    <li><a href="email_templates.html"><span class="lbl">Email Templates</span></a></li>
+                    <li><a href="blank.html"><span class="lbl">Blank</span></a></li>
+                    <li><a href="empty.html"><span class="lbl">Empty List</span></a></li>
+                    <li><a href="prices.html"><span class="lbl">Prices</span></a></li>
+                    <li><a href="typography.html"><span class="lbl">Typography</span></a></li>
+                    <li><a href="sign-in.html"><span class="lbl">Login</span></a></li>
+                    <li><a href="sign-up.html"><span class="lbl">Register</span></a></li>
+                    <li><a href="reset-password.html"><span class="lbl">Reset Password</span></a></li>
+                    <li><a href="new-password.html"><span class="lbl">New Password</span></a></li>
+                    <li><a href="error-404.html"><span class="lbl">Error 404</span></a></li>
+                    <li><a href="error-500.html"><span class="lbl">Error 500</span></a></li>
+                    <li><a href="cards.html"><span class="lbl">Cards</span></a></li>
+                    <li><a href="avatars.html"><span class="lbl">Avatars</span></a></li>
+                    <li><a href="ribbons.html"><span class="lbl">Ribbons</span></a></li>
+                    <li><a href="icons-startui.html"><span class="lbl">Icons</span></a></li>
+                    <li><a href="invoice.html"><span class="lbl">Invoice</span></a></li>
+                    <li><a href="helpers.html"><span class="lbl">Helpers</span></a></li>
+                </ul>
+            </li>
+            <li class="blue-dirty">
+                <a href="list-tasks.html">
+                    <i class="font-icon font-icon-notebook"></i>
+                    <span class="lbl">Tasks</span>
+                </a>
+            </li>
+            <li class="aquamarine">
+                <a href="contacts-page.html">
+                    <i class="font-icon font-icon-mail"></i>
+                    <span class="lbl">Contact form</span>
+                </a>
+            </li>
+            <li class="blue">
+                <a href="files.html">
+                    <i class="font-icon glyphicon glyphicon-paperclip"></i>
+                    <span class="lbl">File Manager</span>
+                </a>
+            </li>
+            <li class="gold">
+                <a href="gallery.html">
+                    <i class="font-icon font-icon-picture-2"></i>
+                    <span class="lbl">Gallery</span>
+                </a>
+            </li>
+            <li class="red">
+                <a href="project.html">
+                    <i class="font-icon font-icon-case-2"></i>
+                    <span class="lbl">Project</span>
+                </a>
+            </li>
+            <li class="brown with-sub">
+                <span>
+                    <span class="font-icon font-icon-chart"></span>
+                    <span class="lbl">Charts</span>
+                </span>
+                <ul>
+                    <li><a href="charts-c3js.html"><span class="lbl">C3.js</span></a></li>
+                    <li><a href="charts-peity.html"><span class="lbl">Peity</span></a></li>
+                    <li><a href="charts-plottable.html"><span class="lbl">Plottable.js</span></a></li>
+                </ul>
+            </li>
+            <li class="grey with-sub">
+                <span>
+                    <span class="font-icon font-icon-burger"></span>
+                    <span class="lbl">Nested Menu</span>
+                </span>
+                <ul>
+                    <li><a href="#"><span class="lbl">Level 1</span></a></li>
+                    <li><a href="#"><span class="lbl">Level 1</span></a></li>
+                    <li class="with-sub">
+                        <span>
+                            <span class="lbl">Level 2</span>
+                        </span>
+                        <ul>
+                            <li><a href="#"><span class="lbl">Level 2</span></a></li>
+                            <li><a href="#"><span class="lbl">Level 2</span></a></li>
+                            <li class="with-sub">
+                                <span>
+                                    <span class="lbl">Level 3</span>
+                                </span>
+                                <ul>
+                                    <li><a href="#"><span class="lbl">Level 3</span></a></li>
+                                    <li><a href="#"><span class="lbl">Level 3</span></a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    
+        <section>
+            <header class="side-menu-title">Tags</header>
+            <ul class="side-menu-list">
+                <li>
+                    <a href="#">
+                        <i class="tag-color green"></i>
+                        <span class="lbl">Website</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="tag-color grey-blue"></i>
+                        <span class="lbl">Bugs/Errors</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="tag-color red"></i>
+                        <span class="lbl">General Problem</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="tag-color pink"></i>
+                        <span class="lbl">Questions</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="tag-color orange"></i>
+                        <span class="lbl">Ideas</span>
+                    </a>
+                </li>
             </ul>
-
-            <span class="c-sidebar__title">Neat</span>
-            <ul class="c-sidebar__list">
-              <li>
-                <a class="c-sidebar__link" href="ui-kit.html">
-                  <i class="c-sidebar__icon feather icon-layers"></i>UI Kit
-                </a>
-              </li>
-              <li>
-                <a class="c-sidebar__link" href="https://zawiastudio.com/neat/docs/">
-                  <i class="c-sidebar__icon feather icon-book"></i>Documentation
-                </a>
-              </li>
-              <li>
-                <a class="c-sidebar__link" href="https://zawiastudio.com/neat/changelog/">
-                  <i class="c-sidebar__icon feather icon-anchor"></i>Changelog
-                </a>
-              </li>
-            </ul>
-          </div>
-          
-
-          <a class="c-sidebar__footer" href="#">
-            Logout <i class="c-sidebar__footer-icon feather icon-power"></i>
-          </a>
-        </aside>
-      </div>
-
-      <main class="o-page__content">
-        <header class="c-navbar u-mb-medium">
-          <button class="c-sidebar-toggle js-sidebar-toggle">
-            <i class="feather icon-align-left"></i>
-          </button>
-
-          <h2 class="c-navbar__title">My Dashboard</h2>
-
-          <div class="c-dropdown dropdown u-mr-small">
-            <div class="c-notification dropdown-toggle" id="dropdownMenuToggle1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
-              <i class="c-notification__icon feather icon-message-circle"></i>
-            </div>
-
-            <div class="c-dropdown__menu c-dropdown__menu--large has-arrow dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuToggle1">
-
-              <span class="c-dropdown__menu-header">
-                Mentions
-              </span>
-              <a class="c-dropdown__item dropdown-item" href="#">
-                <div class="o-media">
-                  <div class="o-media__img u-mr-xsmall">
-                    <span class="c-avatar c-avatar--xsmall">
-                      <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Adam Sandler">
-                    </span>
-                  </div>
-
-                  <div class="o-media__body">
-                    <p>Hey, Julia how are you doing. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eius iste.</p>
-                  </div>
-                </div>
-              </a>
-
-              <a class="c-dropdown__item dropdown-item" href="#">
-                <div class="o-media">
-                  <div class="o-media__img u-mr-xsmall">
-                    <span class="c-avatar c-avatar--xsmall">
-                      <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Adam Sandler">
-                    </span>
-                  </div>
-
-                  <div class="o-media__body">
-                    <p>Hey, Julia how are you doing. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eius iste.</p>
-                  </div>
-                </div>
-              </a>
-
-              <a class="c-dropdown__item dropdown-item" href="#">
-                <div class="o-media">
-                  <div class="o-media__img u-mr-xsmall">
-                    <span class="c-avatar c-avatar--xsmall">
-                      <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Adam Sandler">
-                    </span>
-                  </div>
-
-                  <div class="o-media__body">
-                    <p>Hey, Julia how are you doing. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eius iste.</p>
-                  </div>
-                </div>
-              </a>
-
-              <a class="c-dropdown__menu-footer">
-                All Mentions
-              </a>
-            </div>
-          </div>
-
-          <div class="c-dropdown dropdown u-mr-medium">
-            <div class="c-notification has-indicator dropdown-toggle" id="dropdownMenuToggle2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
-              <i class="c-notification__icon feather icon-bell"></i>
-            </div>
-
-            <div class="c-dropdown__menu c-dropdown__menu--large has-arrow dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuToggle2">
-
-              <span class="c-dropdown__menu-header">
-                Notifications
-              </span>
-              <a class="c-dropdown__item dropdown-item" href="#">
-                <div class="o-media">
-                  <div class="o-media__img u-mr-xsmall">
-                    <span class="c-icon c-icon--info c-icon--xsmall"><i class="feather icon-globe"></i></span>
-                  </div>
-
-                  <div class="o-media__body">
-                    <p>We've updated the Stripe Services agreement and its supporting terms. Your continueduse of Stripe's services.</p>
-                  </div>
-                </div>
-              </a>
-
-              <a class="c-dropdown__item dropdown-item" href="#">
-                <div class="o-media">
-                  <div class="o-media__img u-mr-xsmall">
-                    <span class="c-icon c-icon--danger c-icon--xsmall"><i class="feather icon-x"></i></span>
-                  </div>
-
-                  <div class="o-media__body">
-                    <p>We've updated the Stripe Services agreement and its supporting terms. Your continueduse of Stripe's services.</p>
-                  </div>
-                </div>
-              </a>
-
-              <a class="c-dropdown__item dropdown-item" href="#">
-                <div class="o-media">
-                  <div class="o-media__img u-mr-xsmall">
-                    <span class="c-icon c-icon--success c-icon--xsmall"><i class="feather icon-anchor"></i></span>
-                  </div>
-
-                  <div class="o-media__body">
-                    <p>We've updated the Stripe Services agreement and its supporting terms. Your continueduse of Stripe's services.</p>
-                  </div>
-                </div>
-              </a>
-
-              <a class="c-dropdown__menu-footer">
-                All Notifications
-              </a>
-            </div>
-          </div>
-
-          <div class="c-dropdown dropdown">
-            <div class="c-avatar c-avatar--xsmall dropdown-toggle" id="dropdownMenuAvatar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
-              <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Adam Sandler">
-            </div>
-
-            <div class="c-dropdown__menu has-arrow dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuAvatar">
-              <a class="c-dropdown__item dropdown-item" href="#">Edit Profile</a>
-              <a class="c-dropdown__item dropdown-item" href="#">View Activity</a>
-              <a class="c-dropdown__item dropdown-item" href="#">Log out</a>
-            </div>
-          </div>
-        </header>
-
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="c-state-card c-state-card--info">
-                <h4 class="c-state-card__title">Clients</h4>
-                <span class="c-state-card__number">45</span>
-                <p class="c-state-card__status">
-                  <i class="feather icon-trending-up"></i> 23% Increase
-                </p>
-
-                <div class="c-state-card__actions dropdown"> 
-                  <span class="dropdown-toggle" id="dropdownMenuState1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
-                    <i class="feather icon-more-vertical"></i>
-                  </span>
-
-                  <div class="c-dropdown__menu dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuState1">
-                    <a class="c-dropdown__item dropdown-item" href="#">Link 1</a>
-                    <a class="c-dropdown__item dropdown-item" href="#">Link 2</a>
-                    <a class="c-dropdown__item dropdown-item" href="#">Link 3</a>
-                  </div>
-                </div>
-                
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="c-state-card c-state-card--success">
-                <h4 class="c-state-card__title">Projects</h4>
-                <span class="c-state-card__number">540</span>
-                <p class="c-state-card__status">
-                  <i class="feather icon-trending-down"></i> 12% Decrease
-                </p>
-                <div class="c-state-card__actions dropdown"> 
-                  <span class="dropdown-toggle" id="dropdownMenuState2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
-                    <i class="feather icon-more-vertical"></i>
-                  </span>
-
-                  <div class="c-dropdown__menu dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuState2">
-                    <a class="c-dropdown__item dropdown-item" href="#">Link 1</a>
-                    <a class="c-dropdown__item dropdown-item" href="#">Link 2</a>
-                    <a class="c-dropdown__item dropdown-item" href="#">Link 3</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="c-state-card c-state-card--fancy">
-                <h4 class="c-state-card__title">Revenue</h4>
-                <span class="c-state-card__number">$45,000</span>
-                <p class="c-state-card__status">
-                  <i class="feather icon-trending-up"></i> 65% Increase
-                </p>
-                <div class="c-state-card__actions dropdown"> 
-                  <span class="dropdown-toggle" id="dropdownMenuState3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
-                    <i class="feather icon-more-vertical"></i>
-                  </span>
-
-                  <div class="c-dropdown__menu dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuState3">
-                    <a class="c-dropdown__item dropdown-item" href="#">Link 1</a>
-                    <a class="c-dropdown__item dropdown-item" href="#">Link 2</a>
-                    <a class="c-dropdown__item dropdown-item" href="#">Link 3</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-
-          <div class="row">
-            <div class="col-md-6">
-              <div class="c-card u-ph-zero u-pb-zero">
-
-                <div class="u-ph-medium">
-                  <h4>Sales</h4>
-                  <p>Activity from 1 Jan 2018 to 30 July 2018</p>
-
-                  <span class="u-h1">$45,000</span>
-                </div>
-
-                <div class="u-p-medium">
-                  <div class="c-chart">
-                    <div class="sales-chart"></div>
-                  </div>
-                </div>
-                
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="c-card u-ph-zero u-pb-zero">
-
-                <div class="u-ph-medium">
-                  <h4>Payouts</h4>
-                  <p>Activity from 1 Jan 2018 to 30 July 2018</p>
-
-                  <span class="u-h1">$23,420</span>
-                </div>
-
-                <div class="u-p-medium">
-                  <div class="c-chart">
-                    <div class="payouts-chart"></div>
-                  </div>
-                </div>
-                
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-4">
-              <div class="c-card" data-mh="dashboard3-cards">
-                <h4>Top Customer</h4>
-                <p class="u-mb-medium">Lorem ipsum dolor sit amet, elit.</p>
-
-                <div class="o-line u-pb-small u-mb-small u-border-bottom">
-                  <div class="o-media">
-                    <div class="o-media__img u-mr-small">
-                      <div class="c-avatar c-avatar--xsmall">
-                        <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Name">
-                      </div>
-                    </div>
-
-                    <div class="o-media__body">
-                      <h6>Justine Henderson</h6>
-                      <p>Blink Inc.</p>
-                    </div>
-                  </div>
-
-                  <h6>$5415
-                    <span class="u-color-success u-block">
-                      <i class="feather icon-trending-up"></i>
-                    </span>
-                  </h6>
-                </div>
-
-                <div class="o-line u-pb-small u-mb-small u-border-bottom">
-                  <div class="o-media">
-                    <div class="o-media__img u-mr-small">
-                      <div class="c-avatar c-avatar--xsmall">
-                        <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Name">
-                      </div>
-                    </div>
-
-                    <div class="o-media__body">
-                      <h6>Waylon Dalton</h6>
-                      <p>Pulse ltd</p>
-                    </div>
-                  </div>
-
-                  <h6>$1520 
-                    <span class="u-color-danger u-block">
-                      <i class="feather icon-trending-down"></i>
-                    </span>
-                  </h6>
-                </div>
-
-                <div class="o-line u-pb-small u-mb-small u-border-bottom">
-                  <div class="o-media">
-                    <div class="o-media__img u-mr-small">
-                      <div class="c-avatar c-avatar--xsmall">
-                        <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Name">
-                      </div>
-                    </div>
-
-                    <div class="o-media__body">
-                      <h6>Warren Hampton</h6>
-                      <p>Restful ltd</p>
-                    </div>
-                  </div>
-
-                  <h6>$520 
-                    <span class="u-color-danger u-block">
-                      <i class="feather icon-trending-down"></i>
-                    </span>
-                  </h6>
-                </div>
-
-                <div class="o-line">
-                  <div class="o-media">
-                    <div class="o-media__img u-mr-small">
-                      <div class="c-avatar c-avatar--xsmall">
-                        <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Name">
-                      </div>
-                    </div>
-
-                    <div class="o-media__body">
-                      <h6>Angela Walker</h6>
-                      <p>Contractor Inc.</p>
-                    </div>
-                  </div>
-
-                  <h6>$4240 
-                    <span class="u-color-success u-block">
-                      <i class="feather icon-trending-up"></i>
-                    </span>
-                  </h6>
-                </div>
-            
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="c-card" data-mh="dashboard3-cards">
-                <h4>Global Revenue</h4>
-                <p class="u-mb-medium">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-
-                <p class="u-mb-xsmall">United States</p>
-                <div class="c-progress c-progress--info c-progress--medium u-mb-small">
-                  <div class="c-progress__bar" style="width:75%;"></div>
-                </div>
-
-                <p class="u-mb-xsmall">Germany</p>
-                <div class="c-progress c-progress--warning c-progress--medium u-mb-small">
-                  <div class="c-progress__bar" style="width:25%;"></div>
-                </div>
-
-                <p class="u-mb-xsmall">United Kingdom</p>
-                <div class="c-progress c-progress--success c-progress--medium u-mb-small">
-                  <div class="c-progress__bar" style="width:45%;"></div>
-                </div>
-
-                <p class="u-mb-xsmall">Russia</p>
-                <div class="c-progress c-progress--info c-progress--medium">
-                  <div class="c-progress__bar" style="width:45%;"></div>
-                </div>
-
-                <p class="u-mb-xsmall">Australia</p>
-                <div class="c-progress c-progress--danger c-progress--medium">
-                  <div class="c-progress__bar" style="width:80%;"></div>
-                </div>
-
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="c-card" data-mh="dashboard3-cards">
-                <h4>Recent Activity</h4>
-                <p class="u-mb-medium">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <div class="c-feed">
-                    <div class="c-feed__item">
-                      <p>New order received from Canada by #49832</p>
-                    </div>
-
-                    <div class="c-feed__item c-feed__item--success">
-                      <p>New order received from Canada by #49832</p>
-                    </div>
-
-                    <div class="c-feed__item">
-                      <p>New order received from Canada by #49832</p>
-                    </div>
-
-                    <div class="c-feed__item c-feed__item--danger">
-                      <p>New order received from Canada by #49832</p>
-                    </div>
-                  </div><!-- // .c-feed -->
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-12">
-              <div class="c-table-responsive@wide">
-                <table class="c-table">
-                  <thead class="c-table__head">
-                    <tr class="c-table__row">
-                      <th class="c-table__cell c-table__cell--head">Customer</th>
-                      <th class="c-table__cell c-table__cell--head">Company</th>
-                      <th class="c-table__cell c-table__cell--head">Lead Score</th>
-                      <th class="c-table__cell c-table__cell--head">Date</th>
-                      <th class="c-table__cell c-table__cell--head">Tags</th>
-                      <th class="c-table__cell c-table__cell--head">Actions</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr class="c-table__row">
-                      <td class="c-table__cell">
-                        <div class="o-media">
-                          <div class="o-media__img u-mr-xsmall">
-                            <div class="c-avatar c-avatar--small">
-                              <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Jessica Alba">
+        </section>
+    </nav><!--.side-menu-->
+
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="chart-statistic-box">
+                        <div class="chart-txt">
+                            <div class="chart-txt-top">
+                                <p><span class="unit">$</span><span class="number">1540</span></p>
+                                <p class="caption">Week income</p>
                             </div>
-                          </div>
-                          <div class="o-media__body">
-                            <h6>Adam Sandler</h6>
-                            <p>Graphic Designer</p>
-                          </div>
+                            <table class="tbl-data">
+                                <tr>
+                                    <td class="price color-purple">120$</td>
+                                    <td>Orders</td>
+                                </tr>
+                                <tr>
+                                    <td class="price color-yellow">15$</td>
+                                    <td>Investments</td>
+                                </tr>
+                                <tr>
+                                    <td class="price color-lime">55$</td>
+                                    <td>Others</td>
+                                </tr>
+                            </table>
                         </div>
-                      </td>
-                      <td class="c-table__cell">Pinterest</td>
-                      <th class="c-table__cell">223</th>
-                      <td class="c-table__cell">19-11-2018</td>
-                      <td class="c-table__cell">
-                        <a class="c-badge c-badge--small c-badge--info" href="#">sketch</a>
-                        <a class="c-badge c-badge--small c-badge--info" href="#">ui</a>
-                        <a class="c-badge c-badge--small c-badge--fancy" href="#">ux</a>
-                      </td>
-                      <td class="c-table__cell">
-                        <div class="c-dropdown dropdown">
-                          <a href="#" class="c-btn c-btn--info has-icon dropdown-toggle" id="dropdownMenuTable1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            More <i class="feather icon-chevron-down"></i>
-                          </a>
-
-                          <div class="c-dropdown__menu dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuTable1">
-                            <a class="c-dropdown__item dropdown-item" href="#">Link One</a>
-                            <a class="c-dropdown__item dropdown-item" href="#">Link Two</a>
-                            <a class="c-dropdown__item dropdown-item" href="#">Link Three</a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr class="c-table__row">
-                      <td class="c-table__cell">
-                        <div class="o-media">
-                          <div class="o-media__img u-mr-xsmall">
-                            <div class="c-avatar c-avatar--small">
-                              <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Jessica Alba">
+                        <div class="chart-container">
+                            <div class="chart-container-in">
+                                <div id="chart_div"></div>
+                                <header class="chart-container-title">Income</header>
+                                <div class="chart-container-x">
+                                    <div class="item"></div>
+                                    <div class="item">tue</div>
+                                    <div class="item">wed</div>
+                                    <div class="item">thu</div>
+                                    <div class="item">fri</div>
+                                    <div class="item">sat</div>
+                                    <div class="item">sun</div>
+                                    <div class="item">mon</div>
+                                    <div class="item"></div>
+                                </div>
+                                <div class="chart-container-y">
+                                    <div class="item">300</div>
+                                    <div class="item"></div>
+                                    <div class="item">250</div>
+                                    <div class="item"></div>
+                                    <div class="item">200</div>
+                                    <div class="item"></div>
+                                    <div class="item">150</div>
+                                    <div class="item"></div>
+                                    <div class="item">100</div>
+                                    <div class="item"></div>
+                                    <div class="item">50</div>
+                                    <div class="item"></div>
+                                </div>
                             </div>
-                          </div>
-                          <div class="o-media__body">
-                            <h6>Adam Sandler</h6>
-                            <p>Copy Writer</p>
-                          </div>
                         </div>
-                      </td>
-                      <td class="c-table__cell">Facebook</td>
-                      <th class="c-table__cell">134</th>
-                      <td class="c-table__cell">28-2-2018</td>
-                      <td class="c-table__cell">
-                        <a class="c-badge c-badge--small c-badge--warning" href="#">research</a>
-                        <a class="c-badge c-badge--small c-badge--success" href="#">docs</a>
-                      </td>
-                      <td class="c-table__cell">
-                        <div class="c-dropdown dropdown">
-                          <a href="#" class="c-btn c-btn--info has-icon dropdown-toggle" id="dropdownMenuTable2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            More <i class="feather icon-chevron-down"></i>
-                          </a>
-
-                          <div class="c-dropdown__menu dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuTable2">
-                            <a class="c-dropdown__item dropdown-item" href="#">Link One</a>
-                            <a class="c-dropdown__item dropdown-item" href="#">Link Two</a>
-                            <a class="c-dropdown__item dropdown-item" href="#">Link Three</a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr class="c-table__row">
-                      <td class="c-table__cell">
-                        <div class="o-media">
-                          <div class="o-media__img u-mr-xsmall">
-                            <div class="c-avatar c-avatar--small">
-                              <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Jessica Alba">
+                    </div><!--.chart-statistic-box-->
+                </div><!--.col-->
+                <div class="col-xl-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <article class="statistic-box red">
+                                <div>
+                                    <div class="number">26</div>
+                                    <div class="caption"><div>Open tickets</div></div>
+                                    <div class="percent">
+                                        <div class="arrow up"></div>
+                                        <p>15%</p>
+                                    </div>
+                                </div>
+                            </article>
+                        </div><!--.col-->
+                        <div class="col-sm-6">
+                            <article class="statistic-box purple">
+                                <div>
+                                    <div class="number">12</div>
+                                    <div class="caption"><div>Closes tickets</div></div>
+                                    <div class="percent">
+                                        <div class="arrow down"></div>
+                                        <p>11%</p>
+                                    </div>
+                                </div>
+                            </article>
+                        </div><!--.col-->
+                        <div class="col-sm-6">
+                            <article class="statistic-box yellow">
+                                <div>
+                                    <div class="number">104</div>
+                                    <div class="caption"><div>New clients</div></div>
+                                    <div class="percent">
+                                        <div class="arrow down"></div>
+                                        <p>5%</p>
+                                    </div>
+                                </div>
+                            </article>
+                        </div><!--.col-->
+                        <div class="col-sm-6">
+                            <article class="statistic-box green">
+                                <div>
+                                    <div class="number">29</div>
+                                    <div class="caption"><div>Here is an example of a long name</div></div>
+                                    <div class="percent">
+                                        <div class="arrow up"></div>
+                                        <p>84%</p>
+                                    </div>
+                                </div>
+                            </article>
+                        </div><!--.col-->
+                    </div><!--.row-->
+                </div><!--.col-->
+            </div><!--.row-->
+    
+            <div class="row">
+                <div class="col-xl-6 dahsboard-column">
+                    <section class="box-typical box-typical-dashboard panel panel-default scrollable">
+                        <header class="box-typical-header panel-heading">
+                            <h3 class="panel-title">Recent orders</h3>
+                        </header>
+                        <div class="box-typical-body panel-body">
+                            <table class="tbl-typical">
+                                <tr>
+                                    <th><div>Status</div></th>
+                                    <th><div>Clients</div></th>
+                                    <th align="center"><div>Orders#</div></th>
+                                    <th align="center"><div>Date</div></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="label label-primary">Paid</span>
+                                        <span class="label label-success">Active</span>
+                                    </td>
+                                    <td>John Doe</td>
+                                    <td align="center">3435362</td>
+                                    <td class="color-blue-grey" nowrap align="center"><span class="semibold">Today</span> 8:30</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="label label-primary">Paid</span>
+                                        <span class="label label-success">Active</span>
+                                    </td>
+                                    <td>Thomas Bayer</td>
+                                    <td align="center">3435362</td>
+                                    <td class="color-blue-grey" nowrap align="center"><span class="semibold">Today</span> 16:30</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="label label-primary">Paid</span>
+                                        <span class="label label-default">Inactive</span>
+                                    </td>
+                                    <td>Nicolas Karabat</td>
+                                    <td align="center">3435362</td>
+                                    <td class="color-blue-grey" nowrap align="center"><span class="semibold">Yesterday</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="label label-default">Unpaid</span>
+                                        <span class="label label-default">Inactive</span>
+                                    </td>
+                                    <td>Alexandre Pome</td>
+                                    <td align="center">3435362</td>
+                                    <td class="color-blue-grey" nowrap align="center">23th May</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="label label-primary">Paid</span>
+                                        <span class="label label-success">Active</span>
+                                    </td>
+                                    <td>John Doe</td>
+                                    <td align="center">3435362</td>
+                                    <td class="color-blue-grey" nowrap align="center"><span class="semibold">Today</span> 8:30</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="label label-primary">Paid</span>
+                                        <span class="label label-success">Active</span>
+                                    </td>
+                                    <td>Thomas Bayer</td>
+                                    <td align="center">3435362</td>
+                                    <td class="color-blue-grey" nowrap align="center"><span class="semibold">Today</span> 16:30</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="label label-primary">Paid</span>
+                                        <span class="label label-default">Inactive</span>
+                                    </td>
+                                    <td>Nicolas Karabat</td>
+                                    <td align="center">3435362</td>
+                                    <td class="color-blue-grey" nowrap align="center"><span class="semibold">Yesterday</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="label label-default">Unpaid</span>
+                                        <span class="label label-default">Inactive</span>
+                                    </td>
+                                    <td>Alexandre Pome</td>
+                                    <td align="center">3435362</td>
+                                    <td class="color-blue-grey" nowrap align="center">23th May</td>
+                                </tr>
+                            </table>
+                        </div><!--.box-typical-body-->
+                    </section><!--.box-typical-dashboard-->
+                    <section class="box-typical box-typical-dashboard panel panel-default scrollable">
+                        <header class="box-typical-header panel-heading">
+                            <h3 class="panel-title">Comments</h3>
+                        </header>
+                        <div class="box-typical-body panel-body">
+                            <article class="comment-item">
+                                <div class="user-card-row">
+                                    <div class="tbl-row">
+                                        <div class="tbl-cell tbl-cell-photo">
+                                            <a href="#">
+                                                <img src="img/photo-64-1.jpg" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="tbl-cell">
+                                            <span class="user-card-row-name"><a href="#">Matt McGill</a></span>
+                                        </div>
+                                        <div class="tbl-cell tbl-cell-date">
+                                            <span class="semibold">Today</span>
+                                            12:45
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="comment-item-txt">
+                                    <p>That’s a great idea! I’m sure we could start this project as soon as possible.</p>
+                                    <p>Let’s meet tomorow!</p>
+                                </div>
+                                <div class="comment-item-meta">
+                                    <a href="#" class="star">
+                                        <i class="font-icon font-icon-star"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="font-icon font-icon-re"></i>
+                                    </a>
+                                    <!--Реализация кнопками-->
+                                    <!--<button type="button" class="star">-->
+                                    <!--<i class="font-icon font-icon-star"></i>-->
+                                    <!--</button>-->
+                                    <!--<button type="button">-->
+                                    <!--<i class="font-icon font-icon-re"></i>-->
+                                    <!--</button>-->
+                                </div>
+                            </article>
+                            <article class="comment-item">
+                                <div class="user-card-row">
+                                    <div class="tbl-row">
+                                        <div class="tbl-cell tbl-cell-photo">
+                                            <a href="#">
+                                                <img src="img/photo-64-2.jpg" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="tbl-cell">
+                                            <span class="user-card-row-name"><a href="#">Tim Collins</a></span>
+                                        </div>
+                                        <div class="tbl-cell tbl-cell-date">
+                                            <span class="semibold">Today</span>
+                                            12:45
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="comment-item-txt">
+                                    <p>That’s a great idea! I’m sure we could start this project as soon as possible.</p>
+                                    <p>Let’s meet tomorow!</p>
+                                </div>
+                                <div class="comment-item-meta">
+                                    <a href="#" class="star active">
+                                        <i class="font-icon font-icon-star"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="font-icon font-icon-re"></i>
+                                    </a>
+                                    <!--Реализация кнопками-->
+                                    <!--<button type="button" class="star">-->
+                                    <!--<i class="font-icon font-icon-star"></i>-->
+                                    <!--</button>-->
+                                    <!--<button type="button">-->
+                                    <!--<i class="font-icon font-icon-re"></i>-->
+                                    <!--</button>-->
+                                </div>
+                            </article>
+                        </div><!--.box-typical-body-->
+                    </section>
+                </div><!--.col-->
+                <div class="col-xl-6 dahsboard-column">
+                    <section class="box-typical box-typical-dashboard panel panel-default scrollable">
+                        <header class="box-typical-header panel-heading">
+                            <h3 class="panel-title">Recent tickets</h3>
+                        </header>
+                        <div class="box-typical-body panel-body">
+                            <table class="tbl-typical">
+                                <tr>
+                                    <th><div>Status</div></th>
+                                    <th><div>Subject</div></th>
+                                    <th align="center"><div>Department</div></th>
+                                    <th align="center"><div>Date</div></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="label label-success">Open</span>
+                                    </td>
+                                    <td>Website down for one week</td>
+                                    <td align="center">Support</td>
+                                    <td nowrap align="center"><span class="semibold">Today</span> 8:30</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="label label-success">Open</span>
+                                    </td>
+                                    <td>Restoring default settings</td>
+                                    <td align="center">Support</td>
+                                    <td nowrap align="center"><span class="semibold">Today</span> 16:30</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="label label-warning">Progress</span>
+                                    </td>
+                                    <td>Loosing control on server</td>
+                                    <td align="center">Support</td>
+                                    <td nowrap align="center"><span class="semibold">Yesterday</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="label label-danger">Closed</span>
+                                    </td>
+                                    <td>Authorizations keys</td>
+                                    <td align="center">Support</td>
+                                    <td nowrap align="center">23th May</td>
+                                </tr>
+                            </table>
+                        </div><!--.box-typical-body-->
+                    </section><!--.box-typical-dashboard-->
+                    <section class="box-typical box-typical-dashboard panel panel-default scrollable">
+                        <header class="box-typical-header panel-heading">
+                            <h3 class="panel-title">Contacts</h3>
+                        </header>
+                        <div class="box-typical-body panel-body">
+                            <div class="contact-row-list">
+                                <article class="contact-row">
+                                    <div class="user-card-row">
+                                        <div class="tbl-row">
+                                            <div class="tbl-cell tbl-cell-photo">
+                                                <a href="#">
+                                                    <img src="img/photo-64-2.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="tbl-cell">
+                                                <p class="user-card-row-name"><a href="#">Tim Collins</a></p>
+                                                <p class="user-card-row-mail"><a href="#">timcolins@mail.com</a></p>
+                                            </div>
+                                            <div class="tbl-cell tbl-cell-status">Director at Tony’s</div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="contact-row">
+                                    <div class="user-card-row">
+                                        <div class="tbl-row">
+                                            <div class="tbl-cell tbl-cell-photo">
+                                                <a href="#">
+                                                    <img src="img/photo-64-1.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="tbl-cell">
+                                                <p class="user-card-row-name"><a href="#">Maggy Smith</a></p>
+                                                <p class="user-card-row-mail"><a href="#">maggysmith@mail.com</a></p>
+                                            </div>
+                                            <div class="tbl-cell tbl-cell-status">PR Manager</div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="contact-row">
+                                    <div class="user-card-row">
+                                        <div class="tbl-row">
+                                            <div class="tbl-cell tbl-cell-photo">
+                                                <a href="#">
+                                                    <img src="img/photo-64-3.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="tbl-cell">
+                                                <p class="user-card-row-name"><a href="#">Molly Bridjet</a></p>
+                                                <p class="user-card-row-mail"><a href="#">mollybr@mail.com</a></p>
+                                            </div>
+                                            <div class="tbl-cell tbl-cell-status">Assistan</div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="contact-row">
+                                    <div class="user-card-row">
+                                        <div class="tbl-row">
+                                            <div class="tbl-cell tbl-cell-photo">
+                                                <a href="#">
+                                                    <img src="img/photo-64-4.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="tbl-cell">
+                                                <p class="user-card-row-name"><a href="#">Maggy Smith</a></p>
+                                                <p class="user-card-row-mail"><a href="#">maggysmith@mail.com</a></p>
+                                            </div>
+                                            <div class="tbl-cell tbl-cell-status">PR Manager</div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="contact-row">
+                                    <div class="user-card-row">
+                                        <div class="tbl-row">
+                                            <div class="tbl-cell tbl-cell-photo">
+                                                <a href="#">
+                                                    <img src="img/photo-64-2.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="tbl-cell">
+                                                <p class="user-card-row-name"><a href="#">Tim Collins</a></p>
+                                                <p class="user-card-row-mail"><a href="#">timcolins@mail.com</a></p>
+                                            </div>
+                                            <div class="tbl-cell tbl-cell-status">Director at Tony’s</div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="contact-row">
+                                    <div class="user-card-row">
+                                        <div class="tbl-row">
+                                            <div class="tbl-cell tbl-cell-photo">
+                                                <a href="#">
+                                                    <img src="img/photo-64-1.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="tbl-cell">
+                                                <p class="user-card-row-name"><a href="#">Maggy Smith</a></p>
+                                                <p class="user-card-row-mail"><a href="#">maggysmith@mail.com</a></p>
+                                            </div>
+                                            <div class="tbl-cell tbl-cell-status">PR Manager</div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="contact-row">
+                                    <div class="user-card-row">
+                                        <div class="tbl-row">
+                                            <div class="tbl-cell tbl-cell-photo">
+                                                <a href="#">
+                                                    <img src="img/photo-64-3.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="tbl-cell">
+                                                <p class="user-card-row-name"><a href="#">Molly Bridjet</a></p>
+                                                <p class="user-card-row-mail"><a href="#">mollybr@mail.com</a></p>
+                                            </div>
+                                            <div class="tbl-cell tbl-cell-status">Assistan</div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="contact-row">
+                                    <div class="user-card-row">
+                                        <div class="tbl-row">
+                                            <div class="tbl-cell tbl-cell-photo">
+                                                <a href="#">
+                                                    <img src="img/photo-64-4.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="tbl-cell">
+                                                <p class="user-card-row-name"><a href="#">Maggy Smith</a></p>
+                                                <p class="user-card-row-mail"><a href="#">maggysmith@mail.com</a></p>
+                                            </div>
+                                            <div class="tbl-cell tbl-cell-status">PR Manager</div>
+                                        </div>
+                                    </div>
+                                </article>
                             </div>
-                          </div>
-                          <div class="o-media__body">
-                            <h6>Adam Sandler</h6>
-                            <p>Marketing Dir.</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="c-table__cell">Spotify</td>
-                      <th class="c-table__cell">165</th>
-                      <td class="c-table__cell">17-8-2018</td>
-                      <td class="c-table__cell">
-                        <a class="c-badge c-badge--small c-badge--fancy" href="#">marketing</a>
-                        <a class="c-badge c-badge--small c-badge--info" href="#">seo</a>
-                      </td>
-                      <td class="c-table__cell">
-                        <div class="c-dropdown dropdown">
-                          <a href="#" class="c-btn c-btn--info has-icon dropdown-toggle" id="dropdownMenuTable3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            More <i class="feather icon-chevron-down"></i>
-                          </a>
-
-                          <div class="c-dropdown__menu dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuTable3">
-                            <a class="c-dropdown__item dropdown-item" href="#">Link One</a>
-                            <a class="c-dropdown__item dropdown-item" href="#">Link Two</a>
-                            <a class="c-dropdown__item dropdown-item" href="#">Link Three</a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr class="c-table__row">
-                      <td class="c-table__cell">
-                        <div class="o-media">
-                          <div class="o-media__img u-mr-xsmall">
-                            <div class="c-avatar c-avatar--small">
-                              <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Jessica Alba">
-                            </div>
-                          </div>
-                          <div class="o-media__body">
-                            <h6>Adam Sandler</h6>
-                            <p>Front-end Developer</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="c-table__cell">Google</td>
-                      <th class="c-table__cell">235</th>
-                      <td class="c-table__cell">14-3-2018</td>
-                      <td class="c-table__cell">
-                        <a class="c-badge c-badge--small c-badge--info" href="#">html</a>
-                        <a class="c-badge c-badge--small c-badge--info" href="#">css</a>
-                        <a class="c-badge c-badge--small c-badge--fancy" href="#">javascript</a>
-                      </td>
-                      <td class="c-table__cell">
-                        <div class="c-dropdown dropdown">
-                          <a href="#" class="c-btn c-btn--info has-icon dropdown-toggle" id="dropdownMenuTable4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            More <i class="feather icon-chevron-down"></i>
-                          </a>
-
-                          <div class="c-dropdown__menu dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuTable4">
-                            <a class="c-dropdown__item dropdown-item" href="#">Link One</a>
-                            <a class="c-dropdown__item dropdown-item" href="#">Link Two</a>
-                            <a class="c-dropdown__item dropdown-item" href="#">Link Three</a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr class="c-table__row">
-                      <td class="c-table__cell">
-                        <div class="o-media">
-                          <div class="o-media__img u-mr-xsmall">
-                            <div class="c-avatar c-avatar--small">
-                              <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Jessica Alba">
-                            </div>
-                          </div>
-                          <div class="o-media__body">
-                            <h6>Adam Sandler</h6>
-                            <p>Backend Developer</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="c-table__cell">Twitter</td>
-                      <th class="c-table__cell">113</th>
-                      <td class="c-table__cell">14-7-2018</td>
-                      <td class="c-table__cell">
-                        <a class="c-badge c-badge--small c-badge--info" href="#">php</a>
-                        <a class="c-badge c-badge--small c-badge--danger" href="#">nodejs</a>
-                        <a class="c-badge c-badge--small c-badge--success" href="#">server</a>
-                      </td>
-                      <td class="c-table__cell">
-                        <div class="c-dropdown dropdown">
-                          <a href="#" class="c-btn c-btn--info has-icon dropdown-toggle" id="dropdownMenuTable5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            More <i class="feather icon-chevron-down"></i>
-                          </a>
-
-                          <div class="c-dropdown__menu dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuTable5">
-                            <a class="c-dropdown__item dropdown-item" href="#">Link One</a>
-                            <a class="c-dropdown__item dropdown-item" href="#">Link Two</a>
-                            <a class="c-dropdown__item dropdown-item" href="#">Link Three</a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr class="c-table__row">
-                      <td class="c-table__cell">
-                        <div class="o-media">
-                          <div class="o-media__img u-mr-xsmall">
-                            <div class="c-avatar c-avatar--small">
-                              <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Jessica Alba">
-                            </div>
-                          </div>
-                          <div class="o-media__body">
-                            <h6>Adam Sandler</h6>
-                            <p>Marketer.</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="c-table__cell">Apple</td>
-                      <th class="c-table__cell">230</th>
-                      <td class="c-table__cell">22-2-2018</td>
-                      <td class="c-table__cell">
-                        <a class="c-badge c-badge--small c-badge--warning" href="#">docs</a>
-                        <a class="c-badge c-badge--small c-badge--danger" href="#">content</a>
-                        <a class="c-badge c-badge--small c-badge--success" href="#">seo</a>
-                      </td>
-                      <td class="c-table__cell">
-                        <div class="c-dropdown dropdown">
-                          <a href="#" class="c-btn c-btn--info has-icon dropdown-toggle" id="dropdownMenuTable6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            More <i class="feather icon-chevron-down"></i>
-                          </a>
-
-                          <div class="c-dropdown__menu dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuTable6">
-                            <a class="c-dropdown__item dropdown-item" href="#">Link One</a>
-                            <a class="c-dropdown__item dropdown-item" href="#">Link Two</a>
-                            <a class="c-dropdown__item dropdown-item" href="#">Link Three</a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+                        </div><!--.box-typical-body-->
+                    </section><!--.box-typical-dashboard-->
+                </div><!--.col-->
             </div>
-          </div>
-          
-          <div class="row">
-            <div class="col-12">
-              <footer class="c-footer">
-                <p>© 2018 Neat, Inc</p>
-                <span class="c-footer__divider">|</span>
-                <nav>
-                  <a class="c-footer__link" href="#">Terms</a>
-                  <a class="c-footer__link" href="#">Privacy</a>
-                  <a class="c-footer__link" href="#">FAQ</a>
-                  <a class="c-footer__link" href="#">Help</a>
-                </nav>
-              </footer>
-            </div>
-          </div>
-        </div>
-      </main>
+        </div><!--.container-fluid-->
+    </div><!--.page-content-->
+
+    <div class="control-panel-container">
+        <ul>
+            <li class="tasks">
+                <div class="control-item-header">
+                    <a href="#" class="icon-toggle">
+                        <span class="caret-down fa fa-caret-down"></span>
+                        <span class="icon fa fa-tasks"></span>
+                    </a>
+                    <span class="text">Task list</span>
+                    <div class="actions">
+                        <a href="#">
+                            <span class="fa fa-refresh"></span>
+                        </a>
+                        <a href="#">
+                            <span class="fa fa-cog"></span>
+                        </a>
+                        <a href="#">
+                            <span class="fa fa-trash"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="control-item-content">
+                    <div class="control-item-content-text">You don't have pending tasks.</div>
+                </div>
+            </li>
+            <li class="sticky-note">
+                <div class="control-item-header">
+                    <a href="#" class="icon-toggle">
+                        <span class="caret-down fa fa-caret-down"></span>
+                        <span class="icon fa fa-file"></span>
+                    </a>
+                    <span class="text">Sticky Note</span>
+                    <div class="actions">
+                        <a href="#">
+                            <span class="fa fa-refresh"></span>
+                        </a>
+                        <a href="#">
+                            <span class="fa fa-cog"></span>
+                        </a>
+                        <a href="#">
+                            <span class="fa fa-trash"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="control-item-content">
+                    <div class="control-item-content-text">
+                        StartUI – a full featured, premium web application admin dashboard built with Twitter Bootstrap 4, JQuery and CSS
+                    </div>
+                </div>
+            </li>
+            <li class="emails">
+                <div class="control-item-header">
+                    <a href="#" class="icon-toggle">
+                        <span class="caret-down fa fa-caret-down"></span>
+                        <span class="icon fa fa-envelope"></span>
+                    </a>
+                    <span class="text">Recent e-mails</span>
+                    <div class="actions">
+                        <a href="#">
+                            <span class="fa fa-refresh"></span>
+                        </a>
+                        <a href="#">
+                            <span class="fa fa-cog"></span>
+                        </a>
+                        <a href="#">
+                            <span class="fa fa-trash"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="control-item-content">
+                    <section class="control-item-actions">
+                        <a href="#" class="link">My e-mails</a>
+                        <a href="#" class="mark">Mark visible as read</a>
+                    </section>
+                    <ul class="control-item-lists">
+                        <li>
+                            <a href="#">
+                                <h6>Welcome to the Community!</h6>
+                                <div>Hi, welcome to the my app...</div>
+                                <div>
+                                    Message text
+                                </div>
+                            </a>
+                            <a href="#" class="reply-all">Reply all</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <h6>Welcome to the Community!</h6>
+                                <div>Hi, welcome to the my app...</div>
+                                <div>
+                                    Message text
+                                </div>
+                            </a>
+                            <a href="#" class="reply-all">Reply all</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <h6>Welcome to the Community!</h6>
+                                <div>Hi, welcome to the my app...</div>
+                                <div>
+                                    Message text
+                                </div>
+                            </a>
+                            <a href="#" class="reply-all">Reply all</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="add">
+                <div class="control-item-header">
+                    <a href="#" class="icon-toggle no-caret">
+                        <span class="icon fa fa-plus"></span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+        <a class="control-panel-toggle">
+            <span class="fa fa-angle-double-left"></span>
+        </a>
     </div>
 
-    <!-- Main JavaScript -->
-    {{-- <script src="js/neat.min.js?v=1.0"></script> --}}
-  </body>
+    <script src="js/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="js/lib/popper/popper.min.js"></script>
+    <script src="js/lib/tether/tether.min.js"></script>
+    <script src="js/lib/bootstrap/bootstrap.min.js"></script>
+    <script src="js/plugins.js"></script>
+
+    <script type="text/javascript" src="js/lib/jqueryui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/lib/lobipanel/lobipanel.min.js"></script>
+    <script type="text/javascript" src="js/lib/match-height/jquery.matchHeight.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.panel').each(function () {
+                try {
+                    $(this).lobiPanel({
+                        sortable: true
+                    }).on('dragged.lobiPanel', function(ev, lobiPanel){
+                        $('.dahsboard-column').matchHeight();
+                    });
+                } catch (err) {}
+            });
+
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var dataTable = new google.visualization.DataTable();
+                dataTable.addColumn('string', 'Day');
+                dataTable.addColumn('number', 'Values');
+                // A column for custom tooltip content
+                dataTable.addColumn({type: 'string', role: 'tooltip', 'p': {'html': true}});
+                dataTable.addRows([
+                    ['MON',  130, ' '],
+                    ['TUE',  130, '130'],
+                    ['WED',  180, '180'],
+                    ['THU',  175, '175'],
+                    ['FRI',  200, '200'],
+                    ['SAT',  170, '170'],
+                    ['SUN',  250, '250'],
+                    ['MON',  220, '220'],
+                    ['TUE',  220, ' ']
+                ]);
+
+                var options = {
+                    height: 314,
+                    legend: 'none',
+                    areaOpacity: 0.18,
+                    axisTitlesPosition: 'out',
+                    hAxis: {
+                        title: '',
+                        textStyle: {
+                            color: '#fff',
+                            fontName: 'Proxima Nova',
+                            fontSize: 11,
+                            bold: true,
+                            italic: false
+                        },
+                        textPosition: 'out'
+                    },
+                    vAxis: {
+                        minValue: 0,
+                        textPosition: 'out',
+                        textStyle: {
+                            color: '#fff',
+                            fontName: 'Proxima Nova',
+                            fontSize: 11,
+                            bold: true,
+                            italic: false
+                        },
+                        baselineColor: '#16b4fc',
+                        ticks: [0,25,50,75,100,125,150,175,200,225,250,275,300,325,350],
+                        gridlines: {
+                            color: '#1ba0fc',
+                            count: 15
+                        }
+                    },
+                    lineWidth: 2,
+                    colors: ['#fff'],
+                    curveType: 'function',
+                    pointSize: 5,
+                    pointShapeType: 'circle',
+                    pointFillColor: '#f00',
+                    backgroundColor: {
+                        fill: '#008ffb',
+                        strokeWidth: 0,
+                    },
+                    chartArea:{
+                        left:0,
+                        top:0,
+                        width:'100%',
+                        height:'100%'
+                    },
+                    fontSize: 11,
+                    fontName: 'Proxima Nova',
+                    tooltip: {
+                        trigger: 'selection',
+                        isHtml: true
+                    }
+                };
+
+                var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                chart.draw(dataTable, options);
+            }
+            $(window).resize(function(){
+                drawChart();
+                setTimeout(function(){
+                }, 1000);
+            });
+        });
+    </script>
+<script src="js/app.js"></script>
+</body>
 </html>
