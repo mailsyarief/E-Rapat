@@ -28,7 +28,10 @@
 
 
     <script src="{{ asset('js/lib/summernote/summernote.min.js') }}"></script>
-    
+
+    <script src="{{ asset('js/lib/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
+    <script src="{{ asset('js/lib/bootstrap-notify/bootstrap-notify-init.js') }}"></script>
+
 
     <script type="text/javascript">
         $('#flatpickr').flatpickr();

@@ -1,43 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <div class="box-typical box-typical-padding">
-{{-- 							<article class="panel">
-							<div class="panel-heading" role="tab" id="headingOne">
-								<a data-toggle="collapse"
-								   data-parent="#accordion"
-								   href="#collapseOne"
-								   aria-expanded="true"
-								   aria-controls="collapseOne">
-									Collapsible Group Item #1
-									<i class="font-icon font-icon-arrow-down"></i>
-								</a>
-							</div>
-							<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-								<div class="panel-collapse-in">
-									<div class="user-card-row">
-										<div class="tbl-row">
-											<div class="tbl-cell tbl-cell-photo">
-												<a href="#">
-													<img src="img/photo-64-2.jpg" alt="">
-												</a>
-											</div>
-											<div class="tbl-cell">
-												<p class="user-card-row-name"><a href="#">Maurico Estrella</a></p>
-												<p class="user-card-row-location">Associate Creative Director @EF</p>
-											</div>
-										</div>
-									</div>
-									<header class="title">How a password changed my life</header>
-									<p>«How could she do something like this to me?» said a voice in my head. All the time. Every day... <a href="#">More</a></p>
-								</div>
-							</div>
-						</article>
- --}}
-    <div>
-        <center>
-          <h3>Rapat {{$data['rapat']->title}}</h3>  
-        </center>
-    </div>
  	<article class="panel">
  		<div class="panel-heading" role="tab" id="headingOne">
 			<a class="btn btn-rounded" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -94,16 +57,44 @@
     </div>
     </div>
 	</div>
+    <button id="bn-success" type="button" class="btn btn-success fade hidden">Success</button>
     </article>
 </div>
 <div class="box-typical box-typical-padding">
+    <form action="/manualsave-notulensi" method="POST">
 	<input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+    <input type="hidden" name="rapat_id" id="token" value="{{ $data['rapat']->id }}">
 	<div class="summernote-theme-1">
-		<textarea class="summernote" rows="10" name="name">{{$data['rapat']->isi}}</textarea>
+		<textarea class="summernote" rows="10" name="isi">{{$data['rapat']->isi}}</textarea>
 	</div>
+    
+    <input type="submit" class="btn btn-success btn-rounded float-right" name="" value="simpan">
+
+    </form>
 </div>
+
 <script src="{{ asset('js/lib/jquery/jquery-3.2.1.min.js') }}"></script>
+
 <script>
+
+        var inactivityTime = function () {
+        var t;
+        window.onload = resetTimer;
+        // DOM Events
+        document.onmousemove = resetTimer;
+        document.onkeypress = resetTimer;
+
+        function logout() {
+            autosave();
+            $('#bn-success').click();
+        }
+
+        function resetTimer() {
+            clearTimeout(t);
+            t = setTimeout(logout, 5000)
+            // 1000 milisec = 1 sec
+        }
+        };
 
 	function autosave(){
 		var token = $('#token').val();
@@ -119,10 +110,9 @@
                 "isi" : data
 			},
 			success: function(return_value){
-				console.log(return_value);
-				if(return_value.status === "success"){
-					console.log(return_value);
-				}else if(return_value.status === "error"){
+				if(return_value === "success"){
+					console.log('1');
+				}else if(return_value === "error"){
 					console.log('0');
 				}
 			}
@@ -130,17 +120,13 @@
 	}
 
     $(document).ready(function() {
+        inactivityTime();
         $('.summernote').summernote({
             height : "500px",
             maxHeight : null,
             focus: true,
             placeholder: 'write here...',
-            maximumImageFileSize: 524288 * 2,
-            callbacks: {
-                onKeyup: function(e) {
-                    autosave();
-                }
-            }
+            maximumImageFileSize: 324288,
         });
     });
     </script>

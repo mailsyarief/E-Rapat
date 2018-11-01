@@ -39,4 +39,5 @@ Route::get('/buat-rapat', 'UserController@buat_rapat');
 Route::post('/new-rapat', 'RapatController@create');
 Route::get('/notulensi/{id}', 'RapatController@notulensi');
 Route::post('/autosave-notulensi', 'RapatController@autosave');
+Route::post('/manualsave-notulensi', 'RapatController@manualsave');
 

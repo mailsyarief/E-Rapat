@@ -73,6 +73,19 @@ class RapatController extends Controller
         $notul->isi = $isi;
         $notul->save();
         $status = 'success';
-        return response()->json($notul->isi);
+        return response()->json($status);
     }
+
+    public function manualsave(Request $request){
+        // dd($request);
+        $id = $request->input('rapat_id');
+        $isi = $request->input('isi');
+        
+        $notul = Rapat::find($id);
+        $notul->isi = $isi;
+        $notul->save();
+        return redirect()->back();
+    }
+
+
 }
