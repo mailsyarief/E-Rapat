@@ -32,9 +32,10 @@ Auth::routes();
 // 		}
 // 	});
 
-Route::get('/', 'UserController@index');
+Route::get('/', 'UserController@index')->name('home');
 Route::get('/buat-rapat', 'UserController@buat_rapat');
 
 
 Route::post('/new-rapat', 'RapatController@create');
+Route::get('/notulensi/{id}', 'RapatController@notulensi');
 

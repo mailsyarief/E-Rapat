@@ -17,7 +17,7 @@ class Rapat extends Model
     }
 
     public function User(){
-    	return $this->belongsToMany('App\User');
+    	return $this->belongsToMany('App\User')->withPivot('peserta_aktif');
     }
 
 }

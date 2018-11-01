@@ -29,7 +29,7 @@
                 @foreach($data as $data)
                 <tr>
                     <td>{{$data->waktu}}</td>
-                    <td>{{$data->title}}</td>
+                    <td><a href="{{ url('/notulensi/'. $data->id) }}">{{$data->title}}</a></td>
                     <td>{{$data->level}}</td>
                     <td>{{$data->tempat}}</td>
                 </tr>

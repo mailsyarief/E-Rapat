@@ -30,7 +30,7 @@ class User extends Authenticatable
 
 
     public function Rapat(){
-        return $this->belongsToMany('App\Rapat');
+        return $this->belongsToMany('App\Rapat')->withPivot('peserta_aktif');
     }
 
 }
