@@ -29,11 +29,6 @@
 
     <script src="{{ asset('js/lib/summernote/summernote.min.js') }}"></script>
     
-    <script>
-        $(document).ready(function() {
-            $('.summernote').summernote();
-        });
-    </script>
 
     <script type="text/javascript">
         $('#flatpickr').flatpickr();

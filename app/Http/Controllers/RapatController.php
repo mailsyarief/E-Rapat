@@ -64,4 +64,15 @@ class RapatController extends Controller
 
         return view('notulensi')->with('data', $data);
     }
+
+
+    public function autosave(Request $request){
+        $id = $request->input('rapat_id');
+        $isi = $request->input('isi');
+        $notul = Rapat::find($id);
+        $notul->isi = $isi;
+        $notul->save();
+        $status = 'success';
+        return response()->json($notul->isi);
+    }
 }
