@@ -22,8 +22,5 @@ class UserController extends Controller
     	return view('home')->with('data',$data->rapat);
     }
 
-    public function buat_rapat(){
-        $user = User::all();
-    	return view('buat-rapat')->with('user', $user);
-    }    
+            
 }

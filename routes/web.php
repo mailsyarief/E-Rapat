@@ -33,7 +33,9 @@ Auth::routes();
 // 	});
 
 Route::get('/', 'UserController@index')->name('home');
-Route::get('/buat-rapat', 'UserController@buat_rapat');
+Route::get('/buat-rapat', 'RapatController@buat_rapat');
+
+Route::get('/kelola-akun', 'AdminController@kelola_akun');
 
 
 Route::post('/new-rapat', 'RapatController@create');
@@ -42,5 +44,8 @@ Route::post('/autosave-notulensi', 'RapatController@autosave');
 Route::post('/manualsave-notulensi', 'RapatController@manualsave');
 Route::get('/att-download/{id}', 'RapatController@att_download');
 Route::get('/delete/{id}', 'RapatController@delete');
+
+
+
 
 

@@ -17,6 +17,11 @@ class RapatController extends Controller
         $this->middleware('auth');
     }
 
+    public function buat_rapat(){
+        $user = User::all();
+        return view('rapat.buat-rapat')->with('user', $user);
+    }    
+
     public function create(Request $request){
         // dd($request);
     	$len_peserta = count($request->peserta);
@@ -71,8 +76,7 @@ class RapatController extends Controller
 
             DB::commit();
         } catch (Exception $e) {
-            DB::rollback();
-            dd($e);            
+            DB::rollback();           
         }
 
         return redirect()->route('home');
@@ -103,43 +107,70 @@ class RapatController extends Controller
     }
 
     public function autosave(Request $request){
-        $id = $request->input('rapat_id');
-        $isi = $request->input('isi');
-        $notul = Rapat::find($id);
-        $notul->isi = $isi;
-        $notul->save();
-        $status = 'success';
-        return response()->json($status);
+        DB::beginTransaction();
+        try {
+
+            $id = $request->input('rapat_id');
+            $isi = $request->input('isi');
+            $notul = Rapat::find($id);
+            $notul->isi = $isi;
+            $notul->save();
+            $status = 'success';
+            
+            DB::commit();         
+
+            return response()->json($status);
+        } catch (Exception $e) {
+            DB::rollback();
+        }
+
     }
 
     public function manualsave(Request $request){
         // dd($request);
-        $id = $request->input('rapat_id');
-        $isi = $request->input('isi');
+        DB::beginTransaction();
+        try {
+            $id = $request->input('rapat_id');
+            $isi = $request->input('isi');
 
-        $notul = Rapat::find($id);
-        $notul->isi = $isi;
-        $notul->save();
-        return redirect()->back();
+            $notul = Rapat::find($id);
+            $notul->isi = $isi;
+            $notul->save();
+
+            DB::commit();         
+
+            return redirect()->back();
+
+        } catch (Exception $e) {
+            DB::rollback();
+        }
+
     }
 
     public function delete($id){
-        $delete_rapat = Rapat::find($id);
-        $att = Attachment::where('rapats_id', $id)->get();
-        // dd($att);
-        if($att != NULL){
-            foreach ($att as $file) {
-                $file_title = $file->at_title;
-                $file_path = public_path('attachment/'.$file_title);
-                unlink($file_path);
-            }
-        }
+
+        DB::beginTransaction();
+        try {
         
-        $delete_rapat->delete();
+            $delete_rapat = Rapat::find($id);
+            $att = Attachment::where('rapats_id', $id)->get();
+            // dd($att);
+            if($att != NULL){
+                foreach ($att as $file) {
+                    $file_title = $file->at_title;
+                    $file_path = public_path('attachment/'.$file_title);
+                    unlink($file_path);
+                }
+            }
+        
+            $delete_rapat->delete();
+            
+            DB::commit();         
+            
+            return redirect()->back()->with("error","Rapat terhapus");            
 
-        return redirect()->back()->with("error","Rapat terhapus");
-
+        } catch (Exception $e) {
+            DB::rollback();
+        }
     }
-
-
 }

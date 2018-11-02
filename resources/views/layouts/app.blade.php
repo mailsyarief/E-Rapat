@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>StartUI - Premium Bootstrap 4 Admin Dashboard Template</title>
+    <title>Ranti | IF</title>
 
     <link href="img/favicon.144x144.png" rel="apple-touch-icon" type="image/png" sizes="144x144">
     <link href="img/favicon.114x114.png" rel="apple-touch-icon" type="image/png" sizes="114x114">
@@ -25,7 +25,6 @@
     <header class="site-header">
         <div class="container-fluid">
             <a href="#" class="site-logo">
-                <h3 class="mr-3">E Rapat</h3>
             </a>
     
             <button id="show-hide-sidebar-toggle" class="show-hide-sidebar">
@@ -84,6 +83,14 @@
                         <span class="lbl">Cari Rapat</span>
                     </a>
                 </li>
+                @if(Auth::user()->role == 1)            
+                    <li class="red">
+                        <a href="{{ url('/kelola-akun') }}">
+                            <i class="fa fa-user"></i>
+                            <span class="lbl">Kelola Akun</span>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </nav>    
     @endif
