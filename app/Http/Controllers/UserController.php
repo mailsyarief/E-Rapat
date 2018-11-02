@@ -18,6 +18,7 @@ class UserController extends Controller
 
     public function index(){
     	$data = Auth::user();
+        // dd($data->rapat);
     	return view('home')->with('data',$data->rapat);
     }
 

@@ -9,7 +9,13 @@
         </center>
     </div>
     
-    <form action="{{ url('/new-rapat') }}" method="POST">
+    @if (session('error'))
+        <div class="alert alert-warning">
+            {{ session('error') }}
+        </div>
+    @endif
+    
+    <form action="{{ url('/new-rapat') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
     	<div class="col-md-6">
@@ -57,6 +63,10 @@
             <div class="form-group">
                 <label class="mb-2">Tags</label>
                 <textarea id="tags-editor-textarea" rows="1" class="form-control" name="tags"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="mb-2">Attachment</label>
+                <input type="file" class="form-control" name="filename[]" multiple="">
             </div>
     	</div>
     </div>  

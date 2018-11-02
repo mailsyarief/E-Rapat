@@ -13,7 +13,7 @@ class Rapat extends Model
     ];
 
     public function Att(){
-    	return $this->hasMany('App\Attachment', 'id');
+    	return $this->hasMany('App\Attachment', 'rapats_id', 'id');
     }
 
     public function User(){

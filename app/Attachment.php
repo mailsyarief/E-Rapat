@@ -8,6 +8,8 @@ use App\Rapat;
 class Attachment extends Model
 {
     //
+	protected $table = 'attachments';
+
     protected $fillable = [
         'rapats_id','at_title','at_path',
     ];

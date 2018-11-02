@@ -53,6 +53,16 @@
                 <label class="mb-2">Tags</label>
                 <textarea id="tags-editor-textarea" rows="1" class="form-control" name="tags" readonly="">{{$data['rapat']->tag}}</textarea>
             </div>
+
+            <div class="form-group">
+                <br>
+                <button id="btnGroupDrop1" type="button" class="btn btn-default-outline dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Attachment</button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    @foreach($data['rapat']->att as $att)
+                        <a class="dropdown-item" href="{{ url('att-download/'.$att->id) }}">{{ $att->at_title }}</a>
+                    @endforeach
+                </div>                
+            </div>            
     	</div>
     </div>
     </div>
