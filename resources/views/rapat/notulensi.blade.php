@@ -82,6 +82,9 @@
 
     </form>
 </div>
+@foreach($data['notulen'] as $notulen)
+    <input id="isnotulen" type="hidden" class="" value="{{ $notulen->peserta_aktif }}">
+@endforeach
 
 <script src="{{ asset('js/lib/jquery/jquery-3.2.1.min.js') }}"></script>
 
@@ -130,15 +133,19 @@
 	}
 
     $(document).ready(function() {
+        var isnotulen = $('#isnotulen').val();
         inactivityTime();
-        $('.summernote').summernote({
-            height : "500px",
-            maxHeight : null,
-            focus: true,
-            placeholder: 'write here...',
-            maximumImageFileSize: 324288,
-        });
+        if(isnotulen == 0){
+            $('.summernote').summernote('disable');    
+        }else{
+            $('.summernote').summernote({
+                height : "500px",
+                maxHeight : null,
+                focus: true,
+                placeholder: 'write here...',
+                maximumImageFileSize: 324288,
+            });            
+        }        
     });
     </script>
-
 @endsection

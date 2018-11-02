@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-Use \DB;
+use Auth;
+use \DB;
 use App\Rapat;
 use App\User;
 use App\Rapat_User;
@@ -92,10 +93,11 @@ class RapatController extends Controller
 
         $data = [
             'rapat' => Rapat::find($id),
+            'notulen' => DB::select('SELECT rapat_user.peserta_aktif FROM rapat_user, rapats WHERE rapat_user.user_id ='. Auth::id() .' AND rapat_user.rapat_id ='.$id.''),            
             'peserta' => DB::select('SELECT rapat_user.id, rapats.title, users.name, rapat_user.peserta_aktif FROM rapats, users, rapat_user WHERE rapat_user.user_id = users.id AND rapat_user.rapat_id = '.$id.' AND rapats.id = '.$id.''),
         ];
-
-        return view('notulensi')->with('data', $data);
+        // dd($data);
+        return view('rapat.notulensi')->with('data', $data);
     }
 
 
