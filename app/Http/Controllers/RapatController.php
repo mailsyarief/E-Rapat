@@ -21,7 +21,7 @@ class RapatController extends Controller
         // dd($request);
     	$len_peserta = count($request->peserta);
     	$len_notulen = count($request->notulen);
-        $len_file = count($request->filename);
+        // $len_file = count($request->filename);
 
         if (array_intersect($request->peserta,$request->notulen)) {
             return redirect()->back()->with("error","Maaf, mohon pisahkan peserta dan notulen");
@@ -60,7 +60,7 @@ class RapatController extends Controller
                     $att = new Attachment;
                     $att->rapats_id = $NewRapat->id;
 
-                    $name=$file->getClientOriginalName();
+                    $name = microtime(true).'.'.$file->getClientOriginalName();
                     $file->move(public_path().'/attachment/', $name);  
 
                     $att->at_title = $name;
@@ -121,6 +121,24 @@ class RapatController extends Controller
         $notul->isi = $isi;
         $notul->save();
         return redirect()->back();
+    }
+
+    public function delete($id){
+        $delete_rapat = Rapat::find($id);
+        $att = Attachment::where('rapats_id', $id)->get();
+        // dd($att);
+        if($att != NULL){
+            foreach ($att as $file) {
+                $file_title = $file->at_title;
+                $file_path = public_path('attachment/'.$file_title);
+                unlink($file_path);
+            }
+        }
+        
+        $delete_rapat->delete();
+
+        return redirect()->back()->with("error","Rapat terhapus");
+
     }
 
 
