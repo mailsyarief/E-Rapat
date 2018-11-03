@@ -78,7 +78,7 @@
                     </a>
                 </li>
                 <li class="green">
-                    <a href="project.html">
+                    <a href="{{ url('cari-rapat') }}">
                         <i class="fa fa-search"></i>
                         <span class="lbl">Cari Rapat</span>
                     </a>
