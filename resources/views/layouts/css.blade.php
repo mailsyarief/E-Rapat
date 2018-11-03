@@ -19,5 +19,9 @@
 <link rel="stylesheet" href="{{ asset('css/separate/pages/editor.min.css') }}">
 
 
+<link rel="stylesheet" href="{{ asset('css/lib/bootstrap-sweetalert/sweetalert.css') }}">
+<link rel="stylesheet" href="{{ asset('css/separate/vendor/sweet-alert-animations.min.css') }}">
+
+
 <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 

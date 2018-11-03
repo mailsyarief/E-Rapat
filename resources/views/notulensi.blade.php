@@ -53,6 +53,7 @@
                 <label class="mb-2">Tags</label>
                 <textarea id="tags-editor-textarea" rows="1" class="form-control" name="tags" readonly="">{{$data['rapat']->tag}}</textarea>
             </div>
+
             <div class="form-group">
                 <br>
                 <button id="btnGroupDrop1" type="button" class="btn btn-default-outline dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Attachment</button>
@@ -76,24 +77,17 @@
 	<div class="summernote-theme-1">
 		<textarea class="summernote" rows="10" name="isi">{{$data['rapat']->isi}}</textarea>
 	</div>
-    @foreach($data['notulen'] as $notulen)
-        @if($notulen->peserta_aktif == 1)
-        <input type="submit" class="btn btn-success btn-rounded float-right" name="" value="simpan">
-        @endif
-    @endforeach    
+    
+    <input type="submit" class="btn btn-success btn-rounded float-right" name="" value="simpan">
 
     </form>
 </div>
-@foreach($data['notulen'] as $notulen)
-    <input id="isnotulen" type="hidden" class="" value="{{ $notulen->peserta_aktif }}">
-@endforeach
 
 <script src="{{ asset('js/lib/jquery/jquery-3.2.1.min.js') }}"></script>
 
 <script>
 
         var inactivityTime = function () {
-        var isnotulen = $('#isnotulen').val();
         var t;
         window.onload = resetTimer;
         // DOM Events
@@ -101,12 +95,8 @@
         document.onkeypress = resetTimer;
 
         function logout() {
-            if(isnotulen == 1){
-                autosave();
-                $('#bn-success').click();                
-            }else {
-                console.log('1');
-            }
+            autosave();
+            $('#bn-success').click();
         }
 
         function resetTimer() {
@@ -140,19 +130,15 @@
 	}
 
     $(document).ready(function() {
-        var isnotulen = $('#isnotulen').val();
         inactivityTime();
-        if(isnotulen == 0){
-            $('.summernote').summernote('disable');    
-        }else{
-            $('.summernote').summernote({
-                height : "500px",
-                maxHeight : null,
-                focus: true,
-                placeholder: 'write here...',
-                maximumImageFileSize: 324288,
-            });            
-        }        
+        $('.summernote').summernote({
+            height : "500px",
+            maxHeight : null,
+            focus: true,
+            placeholder: 'write here...',
+            maximumImageFileSize: 324288,
+        });
     });
     </script>
+
 @endsection

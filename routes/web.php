@@ -33,18 +33,19 @@ Auth::routes();
 // 	});
 
 Route::get('/', 'UserController@index')->name('home');
-Route::get('/buat-rapat', 'RapatController@buat_rapat');
+Route::post('/update-akunsaya', 'UserController@update_akun');
+Route::get('/rapat-saya', 'UserController@rapat_saya');
 
 Route::get('/kelola-akun', 'AdminController@kelola_akun');
+Route::post('/update-akun', 'AdminController@update_akun');
 
-
+Route::get('/buat-rapat', 'RapatController@buat_rapat');
 Route::post('/new-rapat', 'RapatController@create');
 Route::get('/notulensi/{id}', 'RapatController@notulensi');
 Route::post('/autosave-notulensi', 'RapatController@autosave');
 Route::post('/manualsave-notulensi', 'RapatController@manualsave');
 Route::get('/att-download/{id}', 'RapatController@att_download');
 Route::get('/delete/{id}', 'RapatController@delete');
-
 Route::get('/cari-rapat', 'RapatController@cari');
 
 

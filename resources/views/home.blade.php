@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<a href="{{ url('/rapat-saya') }}" class="btn btn-sm btn-info m-2"><i class="fa fa-book mr-2"></i>Rapat Saya</a>
 <div class="box-typical box-typical-padding">
     <div>
         <center>
@@ -42,7 +42,7 @@
                     <td>{{$data->level}}</td>
                     <th>
                         @if($data->creator_id == Auth::id())
-                            <a href="{{ url('/delete/'. $data->id) }}" class="btn btn-sm btn-warning"><i class="fa fa-trash"></i></a>
+                            <a href="{{ url('/delete/'. $data->id) }}" class="btn btn-sm btn-warning swal-btn-cancel"><i class="fa fa-trash"></i></a>
                         @endif
                     </th>
                 </tr>
@@ -60,6 +60,41 @@
             responsive: true
         });
     });
+
+            $('.swal-btn-cancel').click(function(e){
+                e.preventDefault();
+                swal({
+                            title: "Hapus Rapat?",
+                            text: "Rapat akan terhapus secara permanen!",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonText: "Ya, Saya yakin!",
+                            cancelButtonText: "Tidak Jadi!",
+                            closeOnConfirm: false,
+                            closeOnCancel: false
+                        },
+                        function(isConfirm) {
+                            if (isConfirm) {
+                                swal({
+                                    title: "Deleted!",
+                                    text: "Rapat berhasil dihapus.",
+                                    type: "success",
+                                    confirmButtonClass: "btn-success"
+                                }
+                                );
+                            } else {
+                                swal({
+                                    title: "Cancelled",
+                                    text: "Gak Jadiii :)",
+                                    type: "error",
+                                    confirmButtonClass: "btn-danger"
+                                });
+                            }
+                        });
+            });    
 </script>
+
+
 
 @endsection

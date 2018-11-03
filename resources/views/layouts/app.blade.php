@@ -39,15 +39,22 @@
                     <div class="site-header-shown">
                         <div class="dropdown">
                         @if(Auth::check())
+                        <button class="btn btn-sm btn-warning btn-rounded" data-toggle="modal" data-target="#myModal{{ Auth::user()->id }}"><i class="fa fa-edit"></i></button>
+
+
                                 <button class="btn btn-rounded btn-lg dropdown-toggle" id="dd-header-add" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->name }}
                                 </button>
                                 <div class="dropdown-menu mt-3" aria-labelledby="dd-header-add" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                    <a href="" class="dropdown-item">
+                                        Profile
+                                    </a>                
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
@@ -100,6 +107,53 @@
             @yield('content')
         </div><!--.container-fluid-->
     </div><!--.page-content-->
+    @if(Auth::check())
+                        <div id="myModal{{ Auth::user()->id }}" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              </div>
+                              <form action="{{ url('/update-akunsaya') }}" method="POST">
+                                @csrf
+                              <div class="modal-body">
+                                <input class="form-control" type="hidden" name="id" value="{{ Auth::user()->id }}">
+                                <div class="form-group">
+                                    <label class="m-2">Nama</label>
+                                    <input class="form-control" type="text" name="username" value="{{ Auth::user()->name }}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="m-2">NIK</label>
+                                    <input class="form-control" type="text" name="nik" value="{{ Auth::user()->nik }}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="m-2">Email</label>
+                                    <input class="form-control" type="text" name="email" value="{{ Auth::user()->email }}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="m-2">Jabatan</label>
+                                    <input class="form-control" type="text" name="jabatan" value="">
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <label class="m-2">Reset Password</label>
+                                    <input class="form-control" type="password" name="password" value="" minlength="6">
+                                </div>                                
+                                <div class="form-group">
+                                    <label class="m-2">isAdmin</label>
+                                    <input class="form-control" type="text" name="role" value="{{ Auth::user()->role }}">
+                                </div>
+                              </div>
+                              
+                              <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">Save</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>         
+    @endif                                                 
 
     @include('layouts.js')
 </body>
