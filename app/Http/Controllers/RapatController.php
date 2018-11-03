@@ -175,4 +175,9 @@ class RapatController extends Controller
             DB::rollback();
         }
     }
+
+    public function cari(){
+        $data = Auth::user();
+        return view('rapat.cari-rapat')->with('data',$data->rapat);
+    }
 }
