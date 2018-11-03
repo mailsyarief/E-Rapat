@@ -43,6 +43,7 @@ class RapatController extends Controller
             $NewRapat->tempat = $request->tempat;
             $NewRapat->tag = $request->tags;
             $NewRapat->lock = 0;
+            $NewRapat->creator_id = Auth::id();
             $NewRapat->save();
 
             for ($i=0; $i < $len_peserta ; $i++) { 

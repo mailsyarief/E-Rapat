@@ -9,7 +9,7 @@ class Rapat extends Model
     //
     protected $fillable = [
       'title','tempat','waktu','level','tag',
-      'lock','isi'
+      'lock','isi','creator_id'
     ];
 
     public function Att(){

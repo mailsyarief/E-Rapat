@@ -40,7 +40,11 @@
                     <td>{{$data->waktu}}</td>                    
                     <td>{{$data->tempat}}</td>
                     <td>{{$data->level}}</td>
-                    <th><a href="{{ url('/delete/'. $data->id) }}" class="btn btn-sm btn-warning"><i class="fa fa-trash"></i></a></th>
+                    <th>
+                        @if($data->creator_id == Auth::id())
+                            <a href="{{ url('/delete/'. $data->id) }}" class="btn btn-sm btn-warning"><i class="fa fa-trash"></i></a>
+                        @endif
+                    </th>
                 </tr>
                 @endforeach
             </tbody>

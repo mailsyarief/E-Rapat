@@ -77,8 +77,11 @@
 	<div class="summernote-theme-1">
 		<textarea class="summernote" rows="10" name="isi">{{$data['rapat']->isi}}</textarea>
 	</div>
-    
-    <input type="submit" class="btn btn-success btn-rounded float-right" name="" value="simpan">
+    @foreach($data['notulen'] as $notulen)
+        @if($notulen->peserta_aktif == 1)
+        <input type="submit" class="btn btn-success btn-rounded float-right" name="" value="simpan">
+        @endif
+    @endforeach    
 
     </form>
 </div>
@@ -91,15 +94,20 @@
 <script>
 
         var inactivityTime = function () {
+        var isnotulen = $('#isnotulen').val();
         var t;
         window.onload = resetTimer;
         // DOM Events
-        document.onmousemove = resetTimer;
+        // document.onmousemove = resetTimer;
         document.onkeypress = resetTimer;
 
         function logout() {
-            autosave();
-            $('#bn-success').click();
+            if(isnotulen == 1){
+                autosave();
+                $('#bn-success').click();                
+            }else {
+                console.log('1');
+            }
         }
 
         function resetTimer() {
