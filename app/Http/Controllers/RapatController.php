@@ -150,13 +150,14 @@ class RapatController extends Controller
 
     }
 
-    public function delete($id){
+    public function delete(Request $request){
+        
 
         DB::beginTransaction();
         try {
         
-            $delete_rapat = Rapat::find($id);
-            $att = Attachment::where('rapats_id', $id)->get();
+            $delete_rapat = Rapat::find($request->rapat_id);
+            $att = Attachment::where('rapats_id', $request->rapat_id)->get();
             // dd($att);
             if($att != NULL){
                 foreach ($att as $file) {
