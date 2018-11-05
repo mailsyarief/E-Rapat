@@ -193,6 +193,7 @@ class RapatController extends Controller
                 WHERE rapats.isi LIKE "%'.$cari.'%" 
                 OR rapats.tag LIKE "%'.$cari.'%"
                 OR rapats.title LIKE "%'.$cari.'%"
+                ORDER BY title ASC
                 ');
 
         $flag = 1;
