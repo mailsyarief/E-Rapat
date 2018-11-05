@@ -42,7 +42,12 @@
                     <td>{{$data->level}}</td>
                     <th>
                         @if($data->creator_id == Auth::id())
-                            <a href="{{ url('/delete/'. $data->id) }}" class="btn btn-sm btn-warning swal-btn-cancel"><i class="fa fa-trash"></i></a>
+                            <form action="{{ url('/delete') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="user_id" value="{{Auth::id()}}">
+                                <input type="hidden" name="rapat_id" value="{{$data->id}}">
+                                <input type="submit" class="btn btn-sm btn-warning" value="Delete">
+                            </form>
                         @endif
                     </th>
                 </tr>

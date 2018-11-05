@@ -33,6 +33,7 @@
     <script src="{{ asset('js/lib/bootstrap-notify/bootstrap-notify-init.js') }}"></script>
 
     <script src="{{ asset('js/lib/bootstrap-sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('js/summernote-to-pdf.js') }}"></script>
 
 
     <script type="text/javascript">
