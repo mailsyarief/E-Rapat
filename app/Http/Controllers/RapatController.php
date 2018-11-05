@@ -24,7 +24,7 @@ class RapatController extends Controller
     }    
 
     public function create(Request $request){
-        // dd($request);
+        
     	$len_peserta = count($request->peserta);
     	$len_notulen = count($request->notulen);
         // $len_file = count($request->filename);
@@ -32,6 +32,13 @@ class RapatController extends Controller
         if (array_intersect($request->peserta,$request->notulen)) {
             return redirect()->back()->with("error","Maaf, mohon pisahkan peserta dan notulen");
         }
+
+        if(Auth::user()->role = 0){
+            if(!in_array(Auth::id(), $request->peserta) AND !in_array(Auth::id(), $request->notulen)){
+                return redirect()->back()->with("error","Maaf, pembuat rapat harus ada pada rapat");
+            }            
+        }
+
 
         DB::beginTransaction();
         try {
