@@ -142,9 +142,7 @@
     $(document).ready(function() {
         var isnotulen = $('#isnotulen').val();
         inactivityTime();
-        if(isnotulen == 0){
-            $('.summernote').summernote('disable');    
-        }else{
+        if(isnotulen == 1){
             $('.summernote').summernote({
                 height : "500px",
                 maxHeight : null,
@@ -152,6 +150,8 @@
                 placeholder: 'write here...',
                 maximumImageFileSize: 324288,
             });            
+        }else{
+            $('.summernote').summernote('disable');    
         }        
     });
     </script>

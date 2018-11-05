@@ -188,7 +188,7 @@ class RapatController extends Controller
     {       
         $datax = Auth::user();
         $cari = $req->dicari;
-        // dd($datax->rapat);
+
         $data = DB::select('SELECT * FROM rapats 
                 WHERE rapats.isi LIKE "%'.$cari.'%" 
                 OR rapats.tag LIKE "%'.$cari.'%"
@@ -196,8 +196,7 @@ class RapatController extends Controller
                 ');
 
         $flag = 1;
-        // dd($data);
-        // dd($data['index'][0]->id);
+
         return view('rapat.cari-rapat')->with('data',$data)->with('flag', $flag);
     }
 }
