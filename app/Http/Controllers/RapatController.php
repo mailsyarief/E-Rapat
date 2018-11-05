@@ -94,7 +94,7 @@ class RapatController extends Controller
         $data = [
             'rapat' => Rapat::find($id),
             'notulen' => DB::select('SELECT rapat_user.peserta_aktif FROM rapat_user, rapats WHERE rapat_user.user_id ='. Auth::id() .' AND rapat_user.rapat_id ='.$id.''),            
-            'peserta' => DB::select('SELECT rapat_user.id, rapats.title, users.name, rapat_user.peserta_aktif FROM rapats, users, rapat_user WHERE rapat_user.user_id = users.id AND rapat_user.rapat_id = '.$id.' AND rapats.id = '.$id.''),
+            'peserta' => DB::select('SELECT rapat_user.id, rapats.title, users.name, rapat_user.peserta_aktif FROM rapats, users, rapat_user WHERE rapat_user.user_id = users.id AND rapat_user.rapat_id = '.$id.' AND rapats.id = '.$id.'')
         ];
         // dd($data);
         return view('rapat.notulensi')->with('data', $data);
@@ -176,8 +176,28 @@ class RapatController extends Controller
         }
     }
 
-    public function cari(){
-        $data = Auth::user();
-        return view('rapat.cari-rapat')->with('data',$data->rapat);
+    public function cari(){        
+        // dd($data->rapat);
+        $flag = 0;
+        return view('rapat.cari-rapat')->with('flag', $flag);
+    }
+
+    public function search(Request $req)
+    {       
+        $datax = Auth::user();
+        $cari = $req->dicari;
+        // dd($datax->rapat);
+        $data = DB::select('SELECT * FROM rapats 
+                WHERE rapats.isi LIKE "%'.$cari.'%" 
+                OR rapats.tag LIKE "%'.$cari.'%"
+                OR rapats.title LIKE "%'.$cari.'%"
+                ');
+
+        $flag = 1;
+        // dd($data);
+        // dd($data['index'][0]->id);
+        return view('rapat.cari-rapat')->with('data',$data)->with('flag', $flag);
     }
 }
+
+// select title, tempat, waktu, level, tag, isi from `rapats` where rapats.isi LIKE "%bro%";
