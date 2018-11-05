@@ -41,7 +41,7 @@
             </div>
             <div class="form-group">
                 <label class="mb-2">Notulen</label>
-    			<select class="select2 form-control disabled" multiple="multiple" name="peserta[]" required="">
+    			<select class="select2 form-control disabled" multiple="multiple" name="notulen[]" required="">
                     @foreach($data['peserta'] as $peserta)
                     	@if($peserta->peserta_aktif == 1)
                         	<option data-icon="font-icon-home" selected="" value="{{$peserta->id}}">{{$peserta->name}}</option>

@@ -25,9 +25,10 @@ class UserController extends Controller
     }
 
     public function rapat_saya(){
-        $data = Auth::user();
-        $rapat_saya = $data->rapat->where('creator_id',Auth::id());
-        return view('home')->with('data',$rapat_saya);
+        $rapat = Rapat::where('creator_id', Auth::id())->get();
+        // $data = Auth::user();
+        // $rapat_saya = $data->rapat->where('creator_id',Auth::id());
+        return view('home')->with('data',$rapat);
     }
 
     public function update_akun(Request $request){
