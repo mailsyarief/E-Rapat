@@ -71,7 +71,6 @@
 </div>
 <div class="box-typical box-typical-padding">
     <form action="/manualsave-notulensi" method="POST">
-	<input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
     <input type="hidden" name="rapat_id" id="token" value="{{ $data['rapat']->id }}">
 	<div class="summernote-theme-1">
 		<textarea class="summernote" rows="10" name="isi">{{$data['rapat']->isi}}</textarea>
@@ -149,6 +148,35 @@
                 focus: true,
                 placeholder: 'write here...',
                 maximumImageFileSize: 324288,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['fontsize', 'color']],
+                    ['font', ['fontname']],
+                    ['para', ['paragraph']],
+                    ['insert', ['link','image', 'picture', 'doc', 'video']], // image and doc are customized buttons
+                    ['misc', ['codeview', 'fullscreen', 'print']],                
+                ],
+                popover: {
+                  image: [
+                    ['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']],
+                    ['float', ['floatLeft', 'floatRight', 'floatNone']],
+                    ['remove', ['removeMedia']]
+                  ],
+                  link: [
+                    ['link', ['linkDialogShow', 'unlink']]
+                  ],
+                  air: [
+                    ['color', ['color']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['para', ['ul', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture']]
+                  ]
+                },
+                print:{
+                    'stylesheetUrl': 'url_of_stylesheet_for_printing'
+                }
             });            
         }else{
             $('.summernote').summernote('disable');    
