@@ -101,7 +101,7 @@ class RapatController extends Controller
 
         $data = [
             'rapat' => Rapat::find($id),
-            'notulen' => DB::select('SELECT rapat_user.peserta_aktif FROM rapat_user, rapats WHERE rapat_user.user_id ='. Auth::id() .' AND rapat_user.rapat_id ='.$id.''),            
+            'notulen' => DB::select('SELECT DISTINCT rapat_user.peserta_aktif FROM rapat_user, rapats WHERE rapat_user.user_id ='. Auth::id() .' AND rapat_user.rapat_id ='.$id.''),            
             'peserta' => DB::select('SELECT rapat_user.id, rapats.title, users.name, rapat_user.peserta_aktif FROM rapats, users, rapat_user WHERE rapat_user.user_id = users.id AND rapat_user.rapat_id = '.$id.' AND rapats.id = '.$id.'')
         ];
         // dd($data);
@@ -117,9 +117,9 @@ class RapatController extends Controller
     }
 
     public function autosave(Request $request){
+
         DB::beginTransaction();
         try {
-
             $id = $request->input('rapat_id');
             $isi = $request->input('isi');
             $notul = Rapat::find($id);
@@ -142,6 +142,7 @@ class RapatController extends Controller
         try {
             $id = $request->input('rapat_id');
             $isi = $request->input('isi');
+
 
             $notul = Rapat::find($id);
             $notul->isi = $isi;

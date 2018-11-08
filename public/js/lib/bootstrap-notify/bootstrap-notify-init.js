@@ -66,7 +66,7 @@ $(document).ready(function() {
     $('#bn-success').on('click', function() {
         $.notify({
             icon: 'font-icon font-icon-check-circle',
-            title: '<strong>Heads up!</strong>',
+            title: '<strong>Notul Tersimpan!</strong>',
             message: 'You can use any of bootstraps other alert styles as well by default.'
         },{
             type: 'success'

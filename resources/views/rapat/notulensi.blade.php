@@ -71,7 +71,8 @@
 </div>
 <div class="box-typical box-typical-padding">
     <form action="/manualsave-notulensi" method="POST">
-    <input type="hidden" name="rapat_id" id="token" value="{{ $data['rapat']->id }}">
+    @csrf
+    <input type="hidden" name="rapat_id" value="{{ $data['rapat']->id }}">
 	<div class="summernote-theme-1">
 		<textarea class="summernote" rows="10" name="isi">{{$data['rapat']->isi}}</textarea>
 	</div>
@@ -80,7 +81,6 @@
         <input type="submit" class="btn btn-success btn-rounded float-right" name="" value="simpan">
         @endif
     @endforeach    
-
     </form>
 </div>
 @foreach($data['notulen'] as $notulen)
@@ -116,7 +116,7 @@
         };
 
 	function autosave(){
-		var token = $('#token').val();
+		var token = $("[name='_token']").val();
 		var data = $('.summernote').val();
 		$.ajax({
 			type:'POST',
