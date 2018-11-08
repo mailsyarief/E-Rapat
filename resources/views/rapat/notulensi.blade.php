@@ -182,5 +182,16 @@
             $('.summernote').summernote('disable');    
         }        
     });
+
+    $('#bn-success').on('click', function() {
+        $.notify({
+            icon: 'font-icon font-icon-check-circle',
+            title: '<strong> Notul Tersimpan!</strong>',
+            message: ''
+        },{
+            type: 'success'
+        });
+    });
+    
     </script>
 @endsection
