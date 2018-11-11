@@ -49,7 +49,9 @@ Route::post('/delete', 'RapatController@delete');
 Route::get('/cari-rapat', 'RapatController@cari');
 Route::post('/cari-rapat', 'RapatController@search');
 
-
+Route::get('/message', 'MessageController@notify');
+Route::get('/message/{email}', 'MessageController@readNotification');
+Route::get('/rapat/show/{id}/{notif_id}', 'RapatController@show');
 
 
 
