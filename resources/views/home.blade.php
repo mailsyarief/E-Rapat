@@ -12,7 +12,7 @@
         <div class="alert alert-warning">
             {{ session('error') }}
         </div>
-    @endif    
+    @endif 
     <div>
         <table id="example" class="display table table-bordered" cellspacing="0" width="100%">
             <thead>
@@ -34,18 +34,18 @@
                 </tr>
                 </tfoot>
             <tbody>
-                @foreach($data as $data)
+                @foreach($rapats as $rapat)
                 <tr>
-                    <td><a href="{{ url('/notulensi/'. $data->id) }}">{{$data->title}}</a></td>
-                    <td>{{$data->waktu}}</td>                    
-                    <td>{{$data->tempat}}</td>
-                    <td>{{$data->level}}</td>
+                    <td><a href="{{ url('/notulensi/'. $rapat->id) }}">{{$rapat->title}}</a></td>
+                    <td>{{$rapat->waktu}}</td>                    
+                    <td>{{$rapat->tempat}}</td>
+                    <td>{{$rapat->level}}</td>
                     <th>
-                        @if($data->creator_id == Auth::id())
+                        @if($rapat->creator_id == Auth::id())
                             <form action="{{ url('/delete') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="user_id" value="{{Auth::id()}}">
-                                <input type="hidden" name="rapat_id" value="{{$data->id}}">
+                                <input type="hidden" name="rapat_id" value="{{$rapat->id}}">
                                 <input type="submit" class="btn btn-sm btn-warning" value="Delete">
                             </form>
                         @endif

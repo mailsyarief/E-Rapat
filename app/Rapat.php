@@ -1,12 +1,14 @@
 <?php
 
 namespace App;
-
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
 class Rapat extends Model
 {
     //
+    use Notifiable;
+    
     protected $fillable = [
       'title','tempat','waktu','level','tag',
       'lock','isi','creator_id'

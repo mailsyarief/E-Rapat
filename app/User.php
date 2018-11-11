@@ -33,4 +33,8 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Rapat')->withPivot('peserta_aktif');
     }
 
+    public function notifs(){
+        return $this->hasMany('App\Notification', 'notifiable_id');
+    }
+
 }

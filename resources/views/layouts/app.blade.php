@@ -12,7 +12,10 @@
     <link href="img/favicon.57x57.png" rel="apple-touch-icon" type="image/png">
     <link href="img/favicon.png" rel="icon" type="image/png">
     <link href="img/favicon.ico" rel="shortcut icon">
-
+    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap-notifications.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/notif.css')}}">
+    {{-- <script type="text/javascript" src="{{asset('js/notif.js')}}"></script>
+ --}}
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -90,6 +93,34 @@
                         <span class="lbl">Cari Rapat</span>
                     </a>
                 </li>
+
+                <li class="dropdown dropdown-notifications">
+                    <a href="#notifications-panel" class="dropdown-toggle" data-toggle="dropdown">
+                      <i data-count="{{ $notifications->count() }}" class="glyphicon glyphicon-bell notification-icon"></i>
+                      <span class="lbl">Pemberitahuan</span>
+                    </a>
+
+                    <!-- NOTIFICATIONS -->
+                    <div class="dropdown-menu notification-dropdown-menu" aria-labelledby="notifications-dropdown">
+                        <h6 class="dropdown-header">Notifications</h6>
+
+
+                        <div id="notificationsContainer" class="notifications-container"></div>
+
+
+                        <!-- TOUTES -->
+                        @if($notifications)
+                            @foreach($notifications as $notification)
+                            <a class="dropdown-item dropdown-notification-all
+                            " href="{{url('rapat/show/'.$notification->data['message_rapat_id'].'/'.$notification->id)}}">{{ $notification->data['message_title'] }}</a>
+                            @endforeach
+                        @endif
+
+                    </div>
+
+                </li><!-- /dropdown -->
+
+
                 @if(Auth::user()->role == 1)            
                     <li class="red">
                         <a href="{{ url('/kelola-akun') }}">
@@ -152,7 +183,7 @@
                               </form>
                             </div>
                           </div>
-                        </div>         
+                        </div>                               
     @endif                                                 
 
     @include('layouts.js')

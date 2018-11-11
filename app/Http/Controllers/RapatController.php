@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use View;
 use \DB;
+use Carbon\Carbon;
 use App\Rapat;
 use App\User;
 use App\Rapat_User;
 use App\Attachment;
+use App\Notification;
+use App\Notifications\Message;
 
 class RapatController extends Controller
 {
@@ -16,6 +20,7 @@ class RapatController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('notification');
     }
 
     public function buat_rapat(){
@@ -39,7 +44,6 @@ class RapatController extends Controller
             }            
         }
 
-
         DB::beginTransaction();
         try {
 
@@ -53,6 +57,8 @@ class RapatController extends Controller
             $NewRapat->creator_id = Auth::id();
             $NewRapat->save();
 
+            $request['rapat_id'] = $NewRapat->id;
+            
             for ($i=0; $i < $len_peserta ; $i++) { 
                 $Rapat_User = new Rapat_User;
                 $Rapat_User->user_id = $request->peserta[$i];
@@ -61,12 +67,22 @@ class RapatController extends Controller
                 $Rapat_User->save();
             }
 
+            for ($i=0; $i < $len_peserta ; $i++) { 
+                $peserta = User::find($request->peserta[$i]);
+                $peserta->notify(new Message($request->all()));
+            }
+
             for ($i=0; $i < $len_notulen ; $i++){
                 $notulen = new Rapat_User;
                 $notulen->user_id = $request->notulen[$i];
                 $notulen->rapat_id = $NewRapat->id;
                 $notulen->peserta_aktif = 1;
                 $notulen->save();            
+            }
+
+            for ($i=0; $i < $len_notulen ; $i++) { 
+                $peserta = User::find($request->notulen[$i]);
+                $peserta->notify(new Message($request->all()));
             }
 
             if($request->hasfile('filename')){
@@ -134,6 +150,14 @@ class RapatController extends Controller
             DB::rollback();
         }
 
+    }
+
+    public function show($id, $notif_id){
+        $rapat = Rapat::find($id);
+        $notif = Notification::find($notif_id);
+        $notif->read_at = Carbon::now();
+        $notif->save();
+        return view('rapat.show')->with('rapat', $rapat);
     }
 
     public function manualsave(Request $request){

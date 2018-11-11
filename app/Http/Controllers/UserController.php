@@ -6,29 +6,32 @@ use Illuminate\Http\Request;
 use App\Rapat;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use View;
 use Auth;
 Use \DB;
 
 class UserController extends Controller
 {
     //
-
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('notification');
     }
 
     public function index(){
-    	$data = Auth::user();
-        // dd($data->rapat);
-    	return view('home')->with('data',$data->rapat);
+    	$data['user'] = Auth::user();
+        $data['rapats'] = $data['user']->rapat;
+        //$data['notifications'] = auth()->user()->notifications()->orderBy('created_at','desc')->get();
+    	return view('home', $data);
     }
 
     public function rapat_saya(){
-        $rapat = Rapat::where('creator_id', Auth::id())->get();
+        $data['rapats'] = Rapat::where('creator_id', Auth::id())->get();
+        //$data['notifications'] = auth()->user()->notifications()->orderBy('created_at','desc')->get();
         // $data = Auth::user();
         // $rapat_saya = $data->rapat->where('creator_id',Auth::id());
-        return view('home')->with('data',$rapat);
+        return view('home')->with($data);
     }
 
     public function update_akun(Request $request){
