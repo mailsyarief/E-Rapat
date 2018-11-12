@@ -49,7 +49,7 @@
                           <div class="modal-dialog">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4>Edit Akun</h4>
                               </div>
                               <form action="{{ url('/update-akun') }}" method="POST">
                                 @csrf
@@ -69,7 +69,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="m-2">Jabatan</label>
-                                    <input class="form-control" type="text" name="jabatan" value="{{$data->status}}">
+                                    <select id="status" class="form-control" name="jabatan">
+                                        <option value="Tenaga Pengajar" {{$data->jabatan == "Tenaga Pengajar" ? 'selected' : '' }}>Tenaga Pengajar</option>
+                                        <option value="Dosen" {{$data->jabatan == "Dosen" ? 'selected' : '' }}>Dosen</option>
+                                    </select>
                                 </div>
                                 <hr>
                                 <div class="form-group">
@@ -78,7 +81,10 @@
                                 </div>                                
                                 <div class="form-group">
                                     <label class="m-2">isAdmin</label>
-                                    <input class="form-control" type="text" name="role" value="{{$data->role}}">
+                                    <select id="status" class="form-control" name="role">
+                                        <option value="1" {{$data->role == "1" ? 'selected' : '' }}>Admin</option>
+                                        <option value="0" {{$data->jabatan == "0" ? 'selected' : '' }}>User</option>
+                                    </select>
                                 </div>
                               </div>
                               

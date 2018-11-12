@@ -42,7 +42,7 @@
                     <div class="site-header-shown">
                         <div class="dropdown">
                         @if(Auth::check())
-                        <button class="btn btn-sm btn-warning btn-rounded" data-toggle="modal" data-target="#myModal{{ Auth::user()->id }}"><i class="fa fa-edit"></i></button>
+                        <button class="btn btn-sm btn-warning btn-rounded" data-toggle="modal" data-target="#MyModal{{ Auth::user()->id }}"><i class="fa fa-user"></i></button>
 
 
                                 <button class="btn btn-rounded btn-lg dropdown-toggle" id="dd-header-add" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -124,7 +124,7 @@
                 @if(Auth::user()->role == 1)            
                     <li class="red">
                         <a href="{{ url('/kelola-akun') }}">
-                            <i class="fa fa-user"></i>
+                            <i class="fa fa-users"></i>
                             <span class="lbl">Kelola Akun</span>
                         </a>
                     </li>
@@ -139,11 +139,11 @@
         </div><!--.container-fluid-->
     </div><!--.page-content-->
     @if(Auth::check())
-                        <div id="myModal{{ Auth::user()->id }}" class="modal fade" role="dialog">
+                        <div id="MyModal{{ Auth::user()->id }}" class="modal fade" role="dialog">
                           <div class="modal-dialog">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4>Edit Akun</h4>
                               </div>
                               <form action="{{ url('/update-akunsaya') }}" method="POST">
                                 @csrf
@@ -163,16 +163,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="m-2">Jabatan</label>
-                                    <input class="form-control" type="text" name="jabatan" value="">
+                                    <select id="status" class="form-control" name="status">
+                                        <option value="Tenaga Pengajar" {{Auth::user()->level == "Tenaga Pengajar" ? 'selected' : '' }}>Tenaga Pengajar</option>
+                                        <option value="Dosen" {{Auth::user()->level == "Dosen" ? 'selected' : '' }}>Dosen</option>
+                                    </select>                                    
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <label class="m-2">Reset Password</label>
                                     <input class="form-control" type="password" name="password" value="" minlength="6">
-                                </div>                                
-                                <div class="form-group">
-                                    <label class="m-2">isAdmin</label>
-                                    <input class="form-control" type="text" name="role" value="{{ Auth::user()->role }}">
                                 </div>
                               </div>
                               
