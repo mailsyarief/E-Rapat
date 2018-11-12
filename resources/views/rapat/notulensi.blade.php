@@ -1,13 +1,14 @@
 @extends('layouts.app')
 @section('content')
-<div class="box-typical box-typical-padding">
+
+    
+    <a class="btn btn-sm mb-2" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><i class="fa fa-angle-down mr-1"></i> Informasi Rapat</a>
+    <a class="btn btn-sm btn-secondary mb-2" href="{{ url('edit-rapat/'.$data['rapat']->id) }}"><i class="fa fa-edit mr-1"></i> Edit Rapat</a>
  	<article class="panel">
  		<div class="panel-heading" role="tab" id="headingOne">
-			<a class="btn btn-rounded" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-				 Informasi Rapat <i class="fa fa-angle-down ml-2 mr-1"></i>
-			</a>
 		</div>
 		<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="box-typical box-typical-padding">
 		<div class="panel-collapse-in">
         <div class="row">
     	<div class="col-md-6">
@@ -74,11 +75,17 @@
     @csrf
     <input type="hidden" name="rapat_id" value="{{ $data['rapat']->id }}">
 	<div class="summernote-theme-1">
+        @if( $data['rapat']->lock == 1 )
+            <small class="text-muted mb-3">Rapat Selesai</small>
+        @endif        
 		<textarea class="summernote" rows="10" name="isi">{{$data['rapat']->isi}}</textarea>
 	</div>
+    @if(Auth::user()->role == 1)
+        <input type="submit" class="btn btn-success btn-rounded float-right" name="" value="simpan">        
+    @endif
     @foreach($data['notulen'] as $notulen)
-        @if($notulen->peserta_aktif == 1)
-        <input type="submit" class="btn btn-success btn-rounded float-right" name="" value="simpan">
+        @if($notulen->peserta_aktif == 1 && $data['rapat']->lock == 0 && Auth::user()->role == 0)
+            <input type="submit" class="btn btn-success btn-rounded float-right" name="" value="simpan">
         @endif
     @endforeach    
     </form>
@@ -100,7 +107,7 @@
         document.onkeypress = resetTimer;
 
         function logout() {
-            if(isnotulen == 1){
+            if(isnotulen == 1 && {!! $data['rapat']->lock !!} == 0){
                 autosave();
                 $('#bn-success').click();                
             }else {
@@ -141,7 +148,7 @@
     $(document).ready(function() {
         var isnotulen = $('#isnotulen').val();
         inactivityTime();
-        if(isnotulen == 1){
+        if(isnotulen == 1 && {!! $data['rapat']->lock !!} == 0 || {!! Auth::user()->role !!} == 1){
             $('.summernote').summernote({
                 height : "500px",
                 maxHeight : null,
@@ -179,7 +186,19 @@
                 }
             });            
         }else{
-            $('.summernote').summernote('disable');    
+            $('.summernote').summernote({
+                height : "500px",
+                maxHeight : null,
+                focus: true,
+                placeholder: 'write here...',
+                maximumImageFileSize: 324288,
+                toolbar: [
+                    ['misc', ['codeview', 'fullscreen', 'print',]],                
+                ],
+                print:{
+                    'stylesheetUrl': 'url_of_stylesheet_for_printing'
+                }
+            });  
         }        
     });
 

@@ -28,6 +28,7 @@ class AdminController extends Controller
     }
 
     public function update_akun(Request $request){
+        // dd($request);
         
         DB::beginTransaction();
         try {
@@ -38,19 +39,13 @@ class AdminController extends Controller
             $user->nik = $request->nik; 
             $user->email = $request->email; 
             $user->nik = $request->nik;
+            $user->jabatan = $request->jabatan;
+            $user->role = $request->role;
             
             if($request->password){
                 $pass = Hash::make($request->password);
                 $user->password = $pass;
             } 
-
-            if($request->jabatan){
-                $user->jabatan = $request->jabatan;
-            }
-
-            if($request->role){
-                $user->role = $request->role;
-            }
 
             $user->save();
 

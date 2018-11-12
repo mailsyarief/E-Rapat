@@ -48,7 +48,7 @@ Route::get('/att-download/{id}', 'RapatController@att_download');
 Route::post('/delete', 'RapatController@delete');
 Route::get('/cari-rapat', 'RapatController@cari');
 Route::post('/cari-rapat', 'RapatController@search');
-
+Route::get('/edit-rapat/{id}', 'RapatController@edit_rapat');
 
 
 

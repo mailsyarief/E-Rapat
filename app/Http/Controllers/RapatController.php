@@ -23,6 +23,23 @@ class RapatController extends Controller
         return view('rapat.buat-rapat')->with('user', $user);
     }    
 
+    public function edit_rapat($id){
+        $data = [
+            'user' => User::all(),
+            'rapat' => Rapat::find($id),
+            'notulen' => DB::select('SELECT DISTINCT rapat_user.peserta_aktif FROM rapat_user, rapats WHERE rapat_user.user_id ='. Auth::id() .' AND rapat_user.rapat_id ='.$id.''),            
+        ];
+        $peserta = DB::select('SELECT rapat_user.user_id FROM rapats, users, rapat_user WHERE rapat_user.user_id = users.id AND rapat_user.rapat_id = '.$id.' AND rapats.id = '.$id.'');
+        $arr = [];
+        foreach($peserta as $row)
+        {
+            $arr[] = (array) $row;
+        }
+        // dd($arr);
+        return view('rapat.edit-rapat')->with('data', $data)->with('ikutserta', $arr);
+    }    
+
+
     public function create(Request $request){
         
     	$len_peserta = count($request->peserta);
