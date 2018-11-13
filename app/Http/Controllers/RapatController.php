@@ -243,7 +243,7 @@ class RapatController extends Controller
         $data = DB::select('SELECT * FROM rapats 
                 WHERE rapats.isi LIKE "%'.$cari.'%" 
                 OR rapats.tag LIKE "%'.$cari.'%"
-                OR rapats.title LIKE "%'.$cari.'%"
+                OR rapats.title LIKE "%'.$cari.'%" AND rapats.isprivate = 0
                 ORDER BY title ASC
                 ');
 
