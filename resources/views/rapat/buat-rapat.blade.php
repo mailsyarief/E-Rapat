@@ -68,13 +68,30 @@
                 <label class="mb-2">Attachment</label>
                 <input type="file" class="form-control" name="filename[]" multiple="">
             </div>
+            <div class="checkbox-toggle">
+                <input type="checkbox" id="check-toggle-1"/>
+                <label for="check-toggle-1">Private</label>
+                <input type="hidden" name="isprivate" id="isPrivate" value="0">
+            </div>
     	</div>
-    </div>  
-    <input class="btn btn-success btn-rounded float-right" type="submit" value="Buat Rapat"> 
-    </form>
-    
+        <hr>
+
+    </div>      
 </div>
+    <button class="btn btn-success float-right" type="submit"><i class="fa fa-plus mr-1"></i> Buat Rapat</button>
+    </form>
+
     <script src="js/lib/jquery/jquery-3.2.1.min.js"></script>
+
+    <script type="text/javascript">
+    $("#check-toggle-1").click(function() {
+        if($("#check-toggle-1").is(':checked'))
+            $('#isPrivate').val(1);
+        else
+            $('#isPrivate').val(0);
+            
+    });        
+    </script>
 
     <script>
         $(function() {

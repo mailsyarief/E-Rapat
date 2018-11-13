@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/kelola-akun';
 
     /**
      * Create a new controller instance.
@@ -39,6 +39,7 @@ class RegisterController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('role');
+        $this->middleware('notification');
     }
 
     /**
@@ -68,7 +69,7 @@ class RegisterController extends Controller
     {
 
         // dd($data);
-        return User::create([
+        User::create([
             'name' => $data['name'],
             'nik' => $data['nik'],
             'jabatan' => $data['status'],
@@ -76,5 +77,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             //'isAdmin' => '0'
         ]);
+
+        return redirect('/kelola-akun');
     }
 }

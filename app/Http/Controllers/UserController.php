@@ -28,6 +28,7 @@ class UserController extends Controller
 
     public function rapat_saya(){
         $data['rapats'] = Rapat::where('creator_id', Auth::id())->get();
+        $data['rapat_saya'] = 1;
         //$data['notifications'] = auth()->user()->notifications()->orderBy('created_at','desc')->get();
         // $data = Auth::user();
         // $rapat_saya = $data->rapat->where('creator_id',Auth::id());

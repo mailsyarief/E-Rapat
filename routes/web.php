@@ -48,6 +48,7 @@ Route::get('/att-download/{id}', 'RapatController@att_download');
 Route::post('/delete', 'RapatController@delete');
 Route::get('/cari-rapat', 'RapatController@cari');
 Route::post('/cari-rapat', 'RapatController@search');
+Route::get('/cetak-rapat/{id}', 'RapatController@cetak_rapat');
 
 
 Route::get('/message', 'MessageController@notify');

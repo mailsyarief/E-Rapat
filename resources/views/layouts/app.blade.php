@@ -103,11 +103,7 @@
                     <!-- NOTIFICATIONS -->
                     <div class="dropdown-menu notification-dropdown-menu" aria-labelledby="notifications-dropdown">
                         <h6 class="dropdown-header">Notifications</h6>
-
-
                         <div id="notificationsContainer" class="notifications-container"></div>
-
-
                         <!-- TOUTES -->
                         @if($notifications)
                             @foreach($notifications as $notification)

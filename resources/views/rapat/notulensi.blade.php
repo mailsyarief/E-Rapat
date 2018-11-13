@@ -4,6 +4,7 @@
     
     <a class="btn btn-sm mb-2" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><i class="fa fa-angle-down mr-1"></i> Informasi Rapat</a>
     <a class="btn btn-sm btn-secondary mb-2" href="{{ url('edit-rapat/'.$data['rapat']->id) }}"><i class="fa fa-edit mr-1"></i> Edit Rapat</a>
+    <a class="btn btn-sm btn-warning mb-2" target="_blank" href="{{ url('cetak-rapat/'.$data['rapat']->id) }}"><i class="fa fa-print mr-1"></i> Cetak Rapat</a>
  	<article class="panel">
  		<div class="panel-heading" role="tab" id="headingOne">
 		</div>
@@ -79,24 +80,61 @@
             <small class="text-muted mb-3">Rapat Selesai</small>
         @endif        
 		<textarea class="summernote" rows="10" name="isi">{{$data['rapat']->isi}}</textarea>
+        {{-- <textarea id="edit" name="isi">{{$data['rapat']->isi}}</textarea> --}}
+        
 	</div>
+</div>
     @if(Auth::user()->role == 1)
-        <input type="submit" class="btn btn-success btn-rounded float-right" name="" value="simpan">        
+        <input type="submit" class="btn btn-success float-right" name="" value="simpan">        
     @endif
     @foreach($data['notulen'] as $notulen)
         @if($notulen->peserta_aktif == 1 && $data['rapat']->lock == 0 && Auth::user()->role == 0)
-            <input type="submit" class="btn btn-success btn-rounded float-right" name="" value="simpan">
+            <button type="submit" class="btn btn-success float-right"><i class="fa fa-save"></i> Simpan</button>
+            {{-- <input type="submit" class="btn btn-success float-right" name="" value="simpan"> --}}
         @endif
     @endforeach    
     </form>
-</div>
 @foreach($data['notulen'] as $notulen)
     <input id="isnotulen" type="hidden" class="" value="{{ $notulen->peserta_aktif }}">
 @endforeach
 
 <script src="{{ asset('js/lib/jquery/jquery-3.2.1.min.js') }}"></script>
 
+
 <script>
+
+        $(function(){
+          $('#edit').froalaEditor({
+            toolbarStickyOffset: 100,
+            height: 500
+          }).on('froalaEditor.image.beforeUpload', function (e, editor, files) {
+            if (files.length) {
+              // Create a File Reader.
+              var reader = new FileReader();
+         
+              // Set the reader to insert images when they are loaded.
+              reader.onload = function (e) {
+                var result = e.target.result;
+                editor.image.insert(result, null, null, editor.image.get());
+              };
+              
+              // Read image as base64.
+              reader.readAsDataURL(files[0]);
+            }
+
+            editor.popups.hideAll();
+
+            // Stop default upload chain.
+            return false;
+          });
+          $('#getPDF-1').hide();
+          $('#insertFile-1').hide();
+          $('#insertVideo-1').hide();
+          $('#print-1').hide();
+        });
+
+        // $('#edit').froalaEditor()
+          
 
         var inactivityTime = function () {
         var isnotulen = $('#isnotulen').val();
@@ -123,8 +161,10 @@
         };
 
 	function autosave(){
+        // var data = $('#edit').val();
+        var data = $('.summernote').val();
 		var token = $("[name='_token']").val();
-		var data = $('.summernote').val();
+		// var data = $('.summernote').val();
 		$.ajax({
 			type:'POST',
 			url: "{!! URL::to('autosave-notulensi') !!}",
@@ -158,12 +198,15 @@
                 toolbar: [
                     ['style', ['style']],
                     ['font', ['bold', 'italic', 'underline', 'clear']],
-                    ['font', ['fontsize', 'color']],
-                    ['font', ['fontname']],
-                    ['para', ['paragraph']],
-                    ['insert', ['link','image', 'picture', 'doc', 'video']], // image and doc are customized buttons
-                    ['misc', ['codeview', 'fullscreen', 'print']],                
-                ],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'hr']],
+                    ['view', ['fullscreen', 'codeview','print']],
+                    ['help', ['help']]
+                  ],
                 popover: {
                   image: [
                     ['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']],
@@ -186,19 +229,7 @@
                 }
             });            
         }else{
-            $('.summernote').summernote({
-                height : "500px",
-                maxHeight : null,
-                focus: true,
-                placeholder: 'write here...',
-                maximumImageFileSize: 324288,
-                toolbar: [
-                    ['misc', ['codeview', 'fullscreen', 'print',]],                
-                ],
-                print:{
-                    'stylesheetUrl': 'url_of_stylesheet_for_printing'
-                }
-            });  
+            $('.summernote').summernote('disable');  
         }        
     });
 

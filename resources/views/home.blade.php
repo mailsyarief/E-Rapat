@@ -1,11 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="{{ url('/rapat-saya') }}" class="btn btn-sm btn-info m-2"><i class="fa fa-book mr-2"></i>Rapat Saya</a>
+
+@isset($rapat_saya)
+    <a href="{{ url('/') }}" class="btn btn-sm btn-info m-2"><i class="fa fa-book mr-2"></i>Seluruh Rapat</a>
+@else
+    <a href="{{ url('/rapat-saya') }}" class="btn btn-sm btn-info m-2"><i class="fa fa-book mr-2"></i>Rapat Saya</a>
+@endif
+
 <div class="box-typical box-typical-padding">
     <div>
         <center>
-          <h3>Daftar Rapat</h3>  
+            @isset($rapat_saya)
+                <h3>Rapat Saya</h3>  
+            @else
+                <h3>Daftar Rapat</h3>  
+            @endif
         </center>
     </div>
     @if (session('error'))

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="{{ url('/rapat-saya') }}" class="btn btn-sm btn-info m-2"><i class="fa fa-book mr-2"></i>Rapat Saya</a>
+<a href="{{ url('/notulensi/'.$rapat->id) }}" class="btn btn-sm btn-info m-2"><i class="fa fa-book mr-2"></i>Lihat Rapat</a>
 <div class="box-typical box-typical-padding">
     @if (session('error'))
         <div class="alert alert-warning">
@@ -15,8 +15,6 @@
     		<pre>Tanggal : {{ $rapat->waktu }} 
     		<pre>Tempat	: {{ $rapat->tempat }} 
     		<pre>Demikianlah undangan ini kami buat, diharapkan Saudara dapat hadir dalam acara tersebut. Atas perhatian dan partisipasinya kami mengucapkan terimakasih.
-
-
     	</p>       
     </div>  
 </div>

@@ -46,6 +46,7 @@ class RapatController extends Controller
 
 
     public function create(Request $request){
+        // dd($request);
         
     	$len_peserta = count($request->peserta);
     	$len_notulen = count($request->notulen);
@@ -69,6 +70,7 @@ class RapatController extends Controller
             $NewRapat->level = $request->level;
             $NewRapat->waktu = $request->waktu;
             $NewRapat->tempat = $request->tempat;
+            $NewRapat->isprivate = $request->isprivate;
             $NewRapat->tag = $request->tags;
             $NewRapat->lock = 0;
             $NewRapat->creator_id = Auth::id();
@@ -249,6 +251,17 @@ class RapatController extends Controller
 
         return view('rapat.cari-rapat')->with('data',$data)->with('flag', $flag);
     }
+
+    public function cetak_rapat($id){
+        $data = [
+            'rapat' => Rapat::find($id),
+            'notulen' => DB::select('SELECT DISTINCT rapat_user.peserta_aktif FROM rapat_user, rapats WHERE rapat_user.user_id ='. Auth::id() .' AND rapat_user.rapat_id ='.$id.''),            
+            'peserta' => DB::select('SELECT rapat_user.id, rapats.title, users.name, rapat_user.peserta_aktif FROM rapats, users, rapat_user WHERE rapat_user.user_id = users.id AND rapat_user.rapat_id = '.$id.' AND rapats.id = '.$id.'')
+        ];        
+        // return $rapat;
+        return view('rapat.cetak-rapat')->with('data', $data);
+    }    
+
 }
 
 // select title, tempat, waktu, level, tag, isi from `rapats` where rapats.isi LIKE "%bro%";

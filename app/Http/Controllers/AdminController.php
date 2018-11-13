@@ -18,6 +18,7 @@ class AdminController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('role');
+        $this->middleware('notification');
     }
 
     public function kelola_akun(){

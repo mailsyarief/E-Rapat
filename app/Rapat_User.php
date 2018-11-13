@@ -15,4 +15,6 @@ class Rapat_User extends Model
     protected $fillable = [
     	'user_id','rapat_id','peserta_aktif'
     ];
+
+    public $timestamps = false;
 }

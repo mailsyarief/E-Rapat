@@ -21,6 +21,7 @@ class CreateRapatsTable extends Migration
             $table->string('level')->nullable();
             $table->string('tag')->nullable();
             $table->integer('lock');
+            $table->integer('isprivate')->default(0);
             $table->string('isi')->nullable();;
             $table->timestamps();
         });
