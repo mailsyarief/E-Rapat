@@ -44,14 +44,18 @@
 
                             <div class="col-md-6">
                                 {{-- <input id="status" type="text" class="form-control{{ $errors->has('status') ? ' is-invalid' : '' }}" name="status" value="{{ old('status') }}" required autofocus> --}}
-                                <select id="status" class="form-control{{ $errors->has('status')}}" name="status">
+                                <select id="status" class="form-control{{ $errors->has('status')}}" name="status" onchange="showfield(this.options[this.selectedIndex].value)">
                                     <option value="Tenaga Pengajar">Tenaga Pengajar</option>
                                     <option value="Dosen">Dosen</option>
+                                    <option value="Other" >Lain-Lain</option>
                                 </select>
+                                <div id="div1"><input class="form-control" type="text" name="status"/>
+                                    {{-- <input id="status" type="text" class="form-control{{ $errors->has('status') ? ' is-invalid' : '' }}" name="status" value="{{ old('status') }}" required autofocus> --}}                                    
+                                </div>
 
-                                @if ($errors->has('nik'))
+                                @if ($errors->has('status'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('nik') }}</strong>
+                                        <strong>{{ $errors->first('status') }}</strong>
                                     </span>
                                 @endif
                             </div>

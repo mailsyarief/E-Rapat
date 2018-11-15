@@ -24,7 +24,7 @@
 
     @include('layouts.css')
 </head>
-<body class="with-side-menu control-panel control-panel-compact @if(!Auth::check()) sidebar-hidden @endif ">
+<body onload="hidefield()" class="with-side-menu control-panel control-panel-compact @if(!Auth::check()) sidebar-hidden @endif ">
     <header class="site-header">
         <div class="container-fluid">
             <a href="#" class="site-logo">

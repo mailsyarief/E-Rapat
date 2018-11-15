@@ -11,7 +11,7 @@
     <div>
     	<p>
     		<pre>Dengan Hormat,
-    		<pre>Sehubungan dengan diadakannya rapat {{ $rapat->title}} dengan tingkat {{ $rapat->Level}}. Kami mengundang Saudara untuk dapat menghadiri rapat tersebut yang akan diadakan pada :
+    		<pre>Sehubungan dengan diadakannya rapat {{ $rapat->title}} dengan tingkat {{ $rapat->level}}. Kami mengundang Saudara untuk dapat menghadiri rapat tersebut yang akan diadakan pada :
     		<pre>Tanggal : {{ $rapat->waktu }} 
     		<pre>Tempat	: {{ $rapat->tempat }} 
     		<pre>Demikianlah undangan ini kami buat, diharapkan Saudara dapat hadir dalam acara tersebut. Atas perhatian dan partisipasinya kami mengucapkan terimakasih.

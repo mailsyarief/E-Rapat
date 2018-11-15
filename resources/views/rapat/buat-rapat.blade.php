@@ -18,22 +18,11 @@
     <form action="{{ url('/new-rapat') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
-    	<div class="col-md-6">
+    	<div class="col-md-6 col-lg-6">
     		<div class="form-group">
     			<label class="mb-2">Judul Rapat</label>
     			<input class="form-control" type="text" name="title" value="" required="">
-    		</div>
-    		<div class="form-group">
-    			<label class="mb-2">Level Rapat</label>
-                <select class="select2-arrow manual select2-no-search-arrow" name="level" required="">
-                    <option></option>
-                    <option value="Fakultas">Fakultas</option>
-                    <option value="Departemen">Departemen</option>
-                    <option value="Prodi">Prodi</option>
-                    <option value="RMK">RMK</option>
-                    <option value="Lain-lain">Lain-lain</option>
-                </select>
-    		</div>
+    		</div>            
     		<div class="form-group">
     			<label class="mb-2">Waktu Rapat</label>
                 <input id="flatpickr" class="form-control" data-enable-time="true" data-time_24hr="true" name="waktu" value="" required="">
@@ -42,8 +31,12 @@
     			<label class="mb-2">Tempat Rapat</label>
     			<input class="form-control" type="text" name="tempat" value="" required="">    			
     		</div>
+            <div class="form-group">
+                <label class="mb-2">Tags</label>
+                <textarea id="tags-editor-textarea" rows="1" class="form-control" name="tags"></textarea>
+            </div>           
     	</div>
-    	<div class="col-md-6">
+    	<div class="col-md-6 col-lg-6">
             <div class="form-group">
                 <label class="mb-2">Peserta</label>
     			<select class="select2 form-control" multiple="multiple" name="peserta[]" required="">
@@ -59,12 +52,21 @@
                         <option data-icon="font-icon-home" value="{{$notul->id}}">{{$notul->name}}</option>
                     @endforeach
                 </select>
-            </div>      
-            <div class="form-group">
-                <label class="mb-2">Tags</label>
-                <textarea id="tags-editor-textarea" rows="1" class="form-control" name="tags"></textarea>
             </div>
             <div class="form-group">
+                <label class="mb-2">Level Rapat</label>
+                <select class="select2-arrow manual select2-no-search-arrow" name="level" required="" onchange="showfield(this.options[this.selectedIndex].value)">
+                    <option></option>
+                    <option value="Fakultas">Fakultas</option>
+                    <option value="Departemen">Departemen</option>
+                    <option value="Prodi">Prodi</option>
+                    <option value="RMK">RMK</option>
+                    <option value="Other" >Lain-Lain</option>
+                </select>
+                <div id="div1"><input class="form-control" type="text" name="level"/>
+            </div>
+
+            <div class="form-group"><br>
                 <label class="mb-2">Attachment</label>
                 <input type="file" class="form-control" name="filename[]" multiple="">
             </div>
@@ -78,7 +80,7 @@
 
     </div>      
 </div>
-    <button class="btn btn-success float-right" type="submit"><i class="fa fa-plus mr-1"></i> Buat Rapat</button>
+    <button class="btn btn-success float-right" type="submit" style="margin-top: -30px"><i class="fa fa-plus mr-1"></i> Buat Rapat</button>
     </form>
 
     <script src="js/lib/jquery/jquery-3.2.1.min.js"></script>

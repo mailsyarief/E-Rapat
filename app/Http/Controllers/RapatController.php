@@ -40,7 +40,7 @@ class RapatController extends Controller
         {
             $arr[] = (array) $row;
         }
-        // dd($arr);
+        // dd($arr);        
         return view('rapat.edit-rapat')->with('data', $data)->with('ikutserta', $arr);
     }    
 

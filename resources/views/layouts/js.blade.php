@@ -76,4 +76,17 @@
     $('#flatpickr').flatpickr();
   </script>
 
+  <script type="text/javascript">
+    function showfield(name){
+      if(name=='Other')document.getElementById('div1').style.display="block"; 
+      //innerHTML='Other: <input type="text" name="other" />';
+      else document.getElementById('div1').style.display="none";
+        //innerHTML='';
+    }
+
+    function hidefield(){
+      document.getElementById('div1').style.display='none';
+    }
+  </script>
+
   <script src="{{ asset('js/app.js') }}"></script>
