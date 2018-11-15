@@ -42,6 +42,7 @@ Route::post('/update-akun', 'AdminController@update_akun');
 Route::get('/buat-rapat', 'RapatController@buat_rapat');
 Route::post('/new-rapat', 'RapatController@create');
 Route::get('/notulensi/{id}', 'RapatController@notulensi');
+Route::post('/get-template', 'RapatController@get_template');
 Route::post('/autosave-notulensi', 'RapatController@autosave');
 Route::post('/manualsave-notulensi', 'RapatController@manualsave');
 Route::get('/att-download/{id}', 'RapatController@att_download');
