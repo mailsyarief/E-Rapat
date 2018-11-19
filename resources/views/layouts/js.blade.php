@@ -72,6 +72,9 @@
   <script type="text/javascript" src="{{ asset('froala/js/plugins/special_characters.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('froala/js/plugins/word_paste.min.js') }}"></script>
 
+  <script src="https://rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js"></script>
+
+
   <script type="text/javascript">
     $('#flatpickr').flatpickr();
   </script>
@@ -82,10 +85,6 @@
       //innerHTML='Other: <input type="text" name="other" />';
       else document.getElementById('div1').style.display="none";
         //innerHTML='';
-    }
-
-    function hidefield(){
-      document.getElementById('div1').style.display='none';
     }
   </script>
 

@@ -47,7 +47,7 @@ class RapatController extends Controller
 
 
     public function create(Request $request){
-        // dd($request);
+        //d($request);
         
     	$len_peserta = count($request->peserta);
     	$len_notulen = count($request->notulen);
@@ -152,17 +152,15 @@ class RapatController extends Controller
         return response()->download($file_path);
     }
 
-    public function get_template(Request $request){
-        $id = $request->rapat_id;
+    public function get_template($id){
+    
         $data = [
             'rapat' => Rapat::find($id),
             'notulen' => DB::select('SELECT DISTINCT rapat_user.peserta_aktif FROM rapat_user, rapats WHERE rapat_user.user_id ='. Auth::id() .' AND rapat_user.rapat_id ='.$id.''),            
             'peserta' => DB::select('SELECT rapat_user.id, rapats.title, users.name, rapat_user.peserta_aktif FROM rapats, users, rapat_user WHERE rapat_user.user_id = users.id AND rapat_user.rapat_id = '.$id.' AND rapats.id = '.$id.'')
         ];        
 
-        // dd($data);
-
-        return redirect()->back()->with('data',$data);
+        return response()->json($data);
     }
 
     public function autosave(Request $request){

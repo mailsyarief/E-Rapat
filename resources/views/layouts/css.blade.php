@@ -43,7 +43,8 @@
   <link rel="stylesheet" href="{{ asset('froala/css/third_party/spell_checker.css') }}">
   <link rel="stylesheet" href="{{ asset('froala/css/plugins/special_characters.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
-
+  
+  <link href="https://rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css" rel="stylesheet">
 
 <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
