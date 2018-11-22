@@ -24,7 +24,7 @@
 
     @include('layouts.css')
 </head>
-<body class="with-side-menu control-panel control-panel-compact @if(!Auth::check()) sidebar-hidden @endif ">
+<body onload="hidefield()" class="with-side-menu control-panel control-panel-compact @if(!Auth::check()) sidebar-hidden @endif ">
     <header class="site-header">
         <div class="container-fluid">
             <a href="#" class="site-logo">
@@ -94,6 +94,15 @@
                     </a>
                 </li>
 
+                @if(Auth::user()->role == 1)            
+                    <li class="red">
+                        <a href="{{ url('/kelola-akun') }}">
+                            <i class="fa fa-users"></i>
+                            <span class="lbl">Kelola Akun</span>
+                        </a>
+                    </li>
+                @endif
+
                 <li class="dropdown dropdown-notifications">
                     <a href="#notifications-panel" class="dropdown-toggle" data-toggle="dropdown">
                       <i data-count="{{ $notifications->count() }}" class="glyphicon glyphicon-bell notification-icon"></i>
@@ -115,16 +124,6 @@
                     </div>
 
                 </li><!-- /dropdown -->
-
-
-                @if(Auth::user()->role == 1)            
-                    <li class="red">
-                        <a href="{{ url('/kelola-akun') }}">
-                            <i class="fa fa-users"></i>
-                            <span class="lbl">Kelola Akun</span>
-                        </a>
-                    </li>
-                @endif
             </ul>
         </nav>    
     @endif
