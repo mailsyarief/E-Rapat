@@ -39,18 +39,22 @@
                             </div>
                         </div>
 
+                        <?php
+                            $statuses = DB::table('users')->select('jabatan')->distinct()->get();
+                        ?>
+
                         <div class="form-group row">
                             <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('Status') }}</label>
-
+                            
                             <div class="col-md-6">
-                                {{-- <input id="status" type="text" class="form-control{{ $errors->has('status') ? ' is-invalid' : '' }}" name="status" value="{{ old('status') }}" required autofocus> --}}
                                 <select id="status" class="form-control{{ $errors->has('status')}}" name="status" onchange="showfield(this.options[this.selectedIndex].value)">
-                                    <option value="Tenaga Pengajar">Tenaga Pengajar</option>
-                                    <option value="Dosen">Dosen</option>
+                                    @foreach($statuses as $statuses)
+                                    <option value="{{$statuses->jabatan}}">{{$statuses->jabatan}}</option>
+                                    @endforeach
                                     <option value="Other" >Lain-Lain</option>
+                                    
                                 </select>
-                                <div id="div1"><input class="form-control" type="text" name="status"/>
-                                    {{-- <input id="status" type="text" class="form-control{{ $errors->has('status') ? ' is-invalid' : '' }}" name="status" value="{{ old('status') }}" required autofocus> --}}                                    
+                                <div id="div1"><input class="form-control" type="text" name="status"/>                                  
                                 </div>
 
                                 @if ($errors->has('status'))
@@ -59,7 +63,9 @@
                                     </span>
                                 @endif
                             </div>
+                            
                         </div>
+
                         <hr>
 
                         <div class="form-group row">
