@@ -86,6 +86,10 @@
       else document.getElementById('div1').style.display="none";
         //innerHTML='';
     }
+
+    function hidefield(){
+      document.getElementById('div1').style.display='none';
+    }
   </script>
 
   <script src="{{ asset('js/app.js') }}"></script>
