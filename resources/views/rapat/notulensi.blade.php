@@ -3,7 +3,9 @@
 
     
     <a class="btn btn-sm mb-2" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><i class="fa fa-angle-down mr-1"></i> Informasi Rapat</a>
-    <a class="btn btn-sm btn-secondary mb-2" href="{{ url('edit-rapat/'.$data['rapat']->id) }}"><i class="fa fa-edit mr-1"></i> Edit Rapat</a>
+    @if(Auth::user()->id == $data['rapat']->creator_id)
+        <a class="btn btn-sm btn-secondary mb-2" href="{{ url('edit-rapat/'.$data['rapat']->id) }}"><i class="fa fa-edit mr-1"></i> Edit Rapat</a>
+    @endif
     <a class="btn btn-sm btn-warning mb-2" target="_blank" href="{{ url('cetak-rapat/'.$data['rapat']->id) }}"><i class="fa fa-print mr-1"></i> Cetak Rapat</a>
  	<article class="panel">
  		<div class="panel-heading" role="tab" id="headingOne">
