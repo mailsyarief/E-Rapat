@@ -57,6 +57,9 @@ Route::get('/message/{email}', 'MessageController@readNotification');
 Route::get('/rapat/show/{id}/{notif_id}', 'RapatController@show');
 
 Route::get('/edit-rapat/{id}', 'RapatController@edit_rapat');
+Route::post('/edit-rapat', 'RapatController@edit_rapat_post');
+Route::post('/delete_att', 'RapatController@delete_att');
+Route::post('/add_att', 'RapatController@add_att');
 
 
 
