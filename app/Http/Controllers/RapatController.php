@@ -31,19 +31,131 @@ class RapatController extends Controller
 
     public function edit_rapat($id){
         $data = [
-            'user' => User::all(),
             'rapat' => Rapat::find($id),
             'notulen' => DB::select('SELECT DISTINCT rapat_user.peserta_aktif FROM rapat_user, rapats WHERE rapat_user.user_id ='. Auth::id() .' AND rapat_user.rapat_id ='.$id.''),            
+            'peserta' => DB::select('SELECT rapat_user.id, rapat_user.user_id, rapats.title, users.name, rapat_user.peserta_aktif FROM rapats, users, rapat_user WHERE rapat_user.user_id = users.id AND rapat_user.rapat_id = '.$id.' AND rapats.id = '.$id.''),
+            'user' => User::all(),
+            'att' => Attachment::where('rapats_id', $id)->get(),
         ];
-        $peserta = DB::select('SELECT rapat_user.user_id FROM rapats, users, rapat_user WHERE rapat_user.user_id = users.id AND rapat_user.rapat_id = '.$id.' AND rapats.id = '.$id.'');
-        $arr = [];
-        foreach($peserta as $row)
-        {
-            $arr[] = (array) $row;
-        }
-        // dd($arr);        
-        return view('rapat.edit-rapat')->with('data', $data)->with('ikutserta', $arr);
+        // dd($data);        
+        return view('rapat.edit-rapat')->with('data', $data);
     }    
+
+    public function add_att(Request $request){
+        
+        if($request->hasfile('filename')){
+            foreach($request->file('filename') as $file){
+                $att = new Attachment;
+                $att->rapats_id = $request->rapats_id;
+
+                $name = microtime(true).'.'.$file->getClientOriginalName();
+                $file->move(public_path().'/attachment/', $name);  
+
+                $att->at_title = $name;
+                $att->at_path = "-";
+                $att->save();
+            }
+        }
+
+        return redirect()->back();
+
+    }
+
+    public function delete_att(Request $request){
+            
+            $att = Attachment::where('rapats_id', $request->rapat_id)
+                             ->where('id', $request->att_id)->first();
+
+            // dd($att->at_title);
+
+            if($att != NULL){
+                    $file_title = $att->at_title;
+                    $file_path = public_path('attachment/'.$file_title);
+                    unlink($file_path);
+                }
+                    
+            $att->delete();
+
+            return redirect()->back();
+    }
+
+    public function edit_rapat_post(Request $request){
+        
+        $len_peserta = count($request->peserta);
+        $len_notulen = count($request->notulen);
+
+        $id = $request->id_rapat;
+        $editRapat = Rapat::find($id);
+        // dd($request);
+        $peserta =  DB::select('SELECT rapat_user.user_id FROM rapat_user WHERE rapat_user.peserta_aktif = 0 AND rapat_user.rapat_id = '.$id.'');
+        
+        $peserta_arr = [];
+        for($i=0;$i<count($peserta);$i++){
+            $peserta_arr[$i] = strval($peserta[$i]->user_id);
+        }
+
+        $notulen =  DB::select('SELECT rapat_user.user_id FROM rapat_user WHERE rapat_user.peserta_aktif = 1 AND rapat_user.rapat_id = '.$id.'');
+        
+        $notulen_arr = [];
+        for($i=0;$i<count($notulen);$i++){
+            $notulen_arr[$i] = strval($notulen[$i]->user_id);
+        }
+
+
+        for ($i=0; $i < $len_peserta ; $i++) { 
+            if(count($peserta_arr) < count($request->peserta)){
+                if(!in_array($peserta_arr[$i], $request->peserta)){
+                    $Rapat_user = Rapat_user::where('rapat_id',$id)->where('user_id',$peserta_arr[$i])->first();
+                    $Rapat_user->delete();
+                }
+            }
+
+            if(!in_array($request->peserta[$i], $peserta_arr)){    
+                $Rapat_User = new Rapat_User;
+                $Rapat_User->user_id = $request->peserta[$i];
+                $Rapat_User->rapat_id = $id;
+                $Rapat_User->peserta_aktif = 0;
+                $Rapat_User->save();                
+            }
+        }
+
+        for ($i=0; $i < $len_notulen ; $i++) { 
+
+            if(!in_array($notulen_arr[$i], $request->notulen)){
+                $Rapat_user = Rapat_user::where('rapat_id',$id)->where('user_id',$notulen_arr[$i])->first();
+                $Rapat_user->delete();
+            }
+
+            if(!in_array($request->notulen[$i], $notulen_arr)){                 
+                $Rapat_User = new Rapat_User;
+                $Rapat_User->user_id = $request->notulen[$i];
+                $Rapat_User->rapat_id = $id;
+                $Rapat_User->peserta_aktif = 1;
+                $Rapat_User->save();                
+            }
+
+        }
+
+        
+
+        DB::beginTransaction();
+        try {
+            $editRapat->title = $request->title;
+            $editRapat->tempat = $request->tempat;
+            $editRapat->waktu = $request->waktu;
+            $editRapat->level = $request->level;
+            $editRapat->tag = $request->tags;
+            $editRapat->isprivate = $request->isprivate;
+            $editRapat->save();
+
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollback();
+        }
+        
+        return redirect()->back();
+    }
 
 
     public function create(Request $request){
