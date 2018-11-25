@@ -31,50 +31,22 @@
                 <label class="mb-2">Tempat Rapat</label>
                 <input id="tempat" class="form-control" type="text" name="tempat" value="{{ $data['rapat']->tempat }}" required="">             
             </div>
-            <div class="form-group">
-                <label class="mb-2">Tags</label>
-                <textarea id="tags-editor-textarea" rows="1" class="form-control" name="tags">{{ $data['rapat']->tag }}</textarea>
-            </div>           
         </div>
         <div class="col-md-6 col-lg-6">
             <div class="form-group">
                 <label class="mb-2">Level Rapat</label>
-                <select id="level" class="select2-arrow manual select2-no-search-arrow" name="level" required="">
+                <select id="level" class="select2 select2-arrow manual select2-no-search-arrow" name="level" required="">
                     <option></option>
                     <option value="Fakultas" {{ $data['rapat']->level == "Fakultas" ? 'selected' : ''}}>Fakultas</option>
                     <option value="Departemen" {{$data['rapat']->level == "Departemen" ? 'selected' : ''}}>Departemen</option>
                     <option value="Prodi" {{$data['rapat']->level == "Prodi" ? 'selected' : ''}}>Prodi</option>
                     <option value="RMK" {{$data['rapat']->level == "RMK" ? 'selected' : ''}}>RMK</option>
                 </select>
-            </div>  
-            <div id="form-group-peserta" class="form-group">
-                <label class="mb-2">Peserta</label>
-                <select id="peserta" class="select2 form-control" multiple="multiple" name="peserta[]" required="">
-                    @foreach($data['user'] as $index => $peserta)
-                        @if(isset($data['peserta'][$index]))
-                            @if($data['peserta'][$index]->peserta_aktif==0)
-                            <option data-icon="font-icon-home" value="{{$data['peserta'][$index]->user_id}}" selected="">{{$data['peserta'][$index]->name}}</option>
-                            @endif
-                        @else
-                            <option data-icon="font-icon-home" value="{{$peserta->id}}">{{$peserta->name}}</option>
-                        @endif
-                    @endforeach
-                </select>
             </div>
-            <div id="form-group-notulen" class="form-group">
-                <label class="mb-2">Notulen</label>
-                <select id="notulen" class="select2 form-control" multiple="multiple" name="notulen[]" required="">
-                    @foreach($data['user'] as $index => $peserta)
-                        @if(isset($data['peserta'][$index]))
-                            @if($data['peserta'][$index]->peserta_aktif==1)
-                            <option data-icon="font-icon-home" value="{{$data['peserta'][$index]->user_id}}" selected="">{{$data['peserta'][$index]->name}}</option>
-                            @endif
-                        @else
-                            <option data-icon="font-icon-home" value="{{$peserta->id}}">{{$peserta->name}}</option>
-                        @endif
-                    @endforeach
-                </select>
-            </div>
+            <div class="form-group">
+                <label class="mb-2">Tags</label>
+                <textarea id="tags-editor-textarea" rows="1" class="form-control" name="tags">{{ $data['rapat']->tag }}</textarea>
+            </div>           
             <div class="checkbox-toggle">
                 <input type="checkbox" id="check-toggle-1" {{ $data['rapat']->isprivate == 1 ? 'checked="" ' : '' }}/>
                 <label for="check-toggle-1">Private</label>
@@ -86,31 +58,62 @@
     </div>      
     <button class="btn btn-success btn-sm" type="submit"><i class="fa fa-edit mr-1"></i> Update Rapat</button>
     </form>
-
 </div>
-
-<a class="btn btn-sm mb-2" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><i class="fa fa-angle-down mr-1"></i> Attatchment</a>
-    <article class="panel">
-        <div class="panel-heading" role="tab" id="headingOne">
-        </div>
-        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+<div class="row">
+    <div class="col-md-6">
+<div class="box-typical box-typical-padding">
+    <div>
+        <center>
+          <h3>Peserta Rapat</h3>  
+        </center>
+    </div>
+    <button type="button" class="btn btn-info btn-sm m-2" data-toggle="modal" data-target="#addPesertaModalCenter"><i class="fa fa-plus mr-1"></i> Peserta</button>
+    <table id="example" class="display table table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Nama</th>
+                <th>Jabatan</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($data['peserta'] as $peserta)
+            <tr>
+                <td>{{ $peserta->name }}</td>
+                <td>{{ $peserta->jabatan }}</td>
+                <td>@if($peserta->peserta_aktif == 1) Notulen @else Peserta @endif</td>
+                <td>
+                    <form action="{{ url('/delete_peserta') }}" method="POST">
+                    @csrf
+                        <input type="hidden" name="user_id" value="{{$peserta->user_id}}">
+                        <input type="hidden" name="rapat_id" value="{{$peserta->id}}">
+                        @if($peserta->user_id != $data['rapat']->creator_id)
+                            <input type="submit" class="btn btn-sm btn-warning" value="Delete">
+                        @endif
+                    </form>
+                </td>
+            </tr>                
+            @endforeach
+        </tbody>
+    </table>
+</div>        
+</div>
+    <div class="col-md-6">
         <div class="box-typical box-typical-padding">
-        <div class="panel-collapse-in">
-        </div>
+        <div>
+            <center>
+              <h3>Berkas Rapat</h3>  
+            </center>
+        </div>            
         <button type="button" class="btn btn-info btn-sm mb-3" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-plus mr-1"></i> Attachment</button>
-        <table id="example" class="display table table-bordered" cellspacing="0" width="100%">
+        <table id="example2" class="display table table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th>Attachment</th>
                     <th>Action</th>
                 </tr>
             </thead>
-                <tfoot>
-                <tr width="20%">
-                    <th>Attachment</th>
-                    <th>Action</th>
-                </tr>
-                </tfoot>
             <tbody>
                 @foreach($data['att'] as $att)
                 <tr>
@@ -127,10 +130,10 @@
                 @endforeach
             </tbody>
         </table>        
-        </div>
-        <button id="bn-success" type="button" class="btn btn-success fade hidden">Success</button>
-    </article>
+        </div>        
+    </div>
 </div>
+
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -157,9 +160,58 @@
   </div>
 </div>
 
+<div class="modal fade" id="addPesertaModalCenter" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add Peserta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ url('add_peserta') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="hidden" name="rapats_id" value="{{ $data['rapat']->id }}">
+            <div class="form-group"><br>
+                <label>Nama Peserta</label>
+                <select class="select2-arrow" name="peserta">
+                    @foreach($data['user'] as $user)
+                        <option value="{{$user->id}}">{{$user->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group"><br>
+                <label>Role</label>
+                <select class="select2-arrow" name="peserta_aktif">
+                    <option value="0">Peserta</option>
+                    <option value="1">Notulen</option>
+                </select>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
     <script src="{{ asset('js/lib/jquery/jquery-3.2.1.min.js') }}"></script>
 
     <script type="text/javascript">
+
+    $(function() {
+        $('#example').DataTable({
+            responsive: true
+        });
+
+        $('#example2').DataTable({
+            responsive: true
+        });        
+    });
+
 
     $("#check-toggle-1").click(function() {
         if($("#check-toggle-1").is(':checked'))

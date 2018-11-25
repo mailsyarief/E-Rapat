@@ -60,6 +60,9 @@ Route::get('/edit-rapat/{id}', 'RapatController@edit_rapat');
 Route::post('/edit-rapat', 'RapatController@edit_rapat_post');
 Route::post('/delete_att', 'RapatController@delete_att');
 Route::post('/add_att', 'RapatController@add_att');
+Route::post('/delete_peserta', 'RapatController@delete_peserta');
+Route::post('/add_peserta', 'RapatController@add_peserta');
+
 
 
 
