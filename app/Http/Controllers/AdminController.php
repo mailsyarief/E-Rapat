@@ -34,7 +34,7 @@ class AdminController extends Controller
         $session = session('admin_session');
         Session::forget('admin_session');
         Auth::loginUsingId($session);
-        return redirect('/');
+        return redirect('/kelola-akun');
     }
 
     public function login_as_akun(Request $request){
