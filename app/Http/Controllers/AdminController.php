@@ -10,6 +10,8 @@ use App\Rapat;
 use App\User;
 use App\Rapat_User;
 use App\Attachment;
+use \Auth;
+use \Session;
 
 class AdminController extends Controller
 {
@@ -26,6 +28,35 @@ class AdminController extends Controller
     		'user' => User::all()
     	];
     	return view('admin.kelola-akun')->with('data', $data);
+    }
+
+    public function switch_back(Request $request){
+        $session = session('admin_session');
+        Session::forget('admin_session');
+        Auth::loginUsingId($session);
+        return redirect('/');
+    }
+
+    public function login_as_akun(Request $request){
+        Session::put('admin_session', $request->admin_id);
+        Auth::loginUsingId($request->user_id);
+        return redirect('/');
+    }
+
+    public function enable_akun(Request $request){
+        $user = User::find($request->user_id);
+        $user->isdisable = $request->isdisable;
+        $user->save();
+
+        return redirect()->back();
+    }
+
+    public function disable_akun(Request $request){
+        $user = User::find($request->user_id);
+        $user->isdisable = $request->isdisable;
+        $user->save();
+
+        return redirect()->back();
     }
 
     public function update_akun(Request $request){

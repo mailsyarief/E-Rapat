@@ -37,7 +37,11 @@ Route::post('/update-akunsaya', 'UserController@update_akun');
 Route::get('/rapat-saya', 'UserController@rapat_saya');
 
 Route::get('/kelola-akun', 'AdminController@kelola_akun');
+Route::post('/enable-akun', 'AdminController@enable_akun');
+Route::post('/disable-akun', 'AdminController@disable_akun');
 Route::post('/update-akun', 'AdminController@update_akun');
+Route::post('/login-as-akun', 'AdminController@login_as_akun');
+Route::post('/switch-back', 'AdminController@switch_back');
 
 Route::get('/buat-rapat', 'RapatController@buat_rapat');
 Route::post('/new-rapat', 'RapatController@create');
@@ -50,6 +54,7 @@ Route::post('/delete', 'RapatController@delete');
 Route::get('/cari-rapat', 'RapatController@cari');
 Route::post('/cari-rapat', 'RapatController@search');
 Route::get('/cetak-rapat/{id}', 'RapatController@cetak_rapat');
+
 
 
 Route::get('/message', 'MessageController@notify');

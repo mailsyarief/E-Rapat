@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('role')->default(0);
             $table->string('jabatan')->nullable();
+            $table->integer('isdisable')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

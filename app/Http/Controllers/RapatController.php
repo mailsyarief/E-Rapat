@@ -20,7 +20,7 @@ class RapatController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('notification');
+        $this->middleware('notification');    
     }
 
     public function buat_rapat(){
@@ -147,6 +147,11 @@ class RapatController extends Controller
     public function create(Request $request){
         //d($request);
         
+
+        if(Auth::user()->isdisable == 1){
+            return redirect()->back();
+        }
+
     	$len_peserta = count($request->peserta);
     	$len_notulen = count($request->notulen);
         // $len_file = count($request->filename);

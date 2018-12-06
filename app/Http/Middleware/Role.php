@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use \Session;
 
 class Role
 {
@@ -15,9 +16,10 @@ class Role
      */
     public function handle($request, Closure $next)
     {
-        if(auth()->check() && $request->user()->role == 0){
+        if(auth()->check() && $request->user()->role == 0 && Session::get('admin_session') == NULL ){
             return redirect()->guest('/');
         }
+
         return $next($request);
     }
 }

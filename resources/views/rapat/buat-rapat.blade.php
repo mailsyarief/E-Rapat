@@ -100,7 +100,11 @@
     </div>      
 </div>
 </div>
-    <button class="btn btn-success float-right" type="submit"><i class="fa fa-plus mr-1"></i> Buat Rapat</button>
+    @if(Auth::user()->isdisable == 0 OR Auth::user()->isdisable == NULL)
+        <button class="btn btn-success float-right" type="submit"><i class="fa fa-plus mr-1"></i> Buat Rapat</button>
+    @else
+        <button class="btn btn-warning float-right" type="button"><i class="fa fa-ban mr-1"></i> Akun anda tidak aktif</button>
+    @endif
     </form>
 
     <script src="js/lib/jquery/jquery-3.2.1.min.js"></script>

@@ -41,10 +41,33 @@
                     <td>{{$data->email}}</td>                    
                     <td>{{$data->jabatan}}</td>
                     <td>{{$data->role}}</td>
-                    <th>
-                        @if($data->id != Auth::id())
-                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#myModal{{$data->id}}"><i class="fa fa-edit mr-2"></i>Edit</button>
-                        @endif
+                    <td>
+                        <div class="form-inline">
+                            @if($data->id != Auth::id())
+                                <button class="btn btn-sm btn-warning mr-3" data-toggle="modal" data-target="#myModal{{$data->id}}"><i class="fa fa-edit mr-2"></i>Edit</button>
+                                @if($data->isdisable == 0 OR $data->isdisable == NULL)
+                                    <form action="{{ url('/disable-akun') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="isdisable" value="1">
+                                        <input type="hidden" name="user_id" value="{{$data->id}}">
+                                        <button type="submit" class="btn btn-sm btn-danger">Disable</button>
+                                    </form>
+                                @else
+                                    <form action="{{ url('/enable-akun') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="isdisable" value="0">
+                                        <input type="hidden" name="user_id" value="{{$data->id}}">
+                                        <button type="submit" class="btn btn-sm btn-info">Enable</button>
+                                    </form>                            
+                                @endif
+                                <form action="{{ url('/login-as-akun') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="admin_id" value="{{Auth::id()}}">
+                                    <input type="hidden" name="user_id" value="{{$data->id}}">
+                                    <button type="submit" class="btn btn-sm btn-secondary ml-3">Login As</button>
+                                </form>
+                            @endif
+                        </div>
                         <div id="myModal{{$data->id}}" class="modal fade" role="dialog">
                           <div class="modal-dialog">
                             <div class="modal-content">
@@ -96,7 +119,7 @@
                             </div>
                           </div>
                         </div>                        
-                    </th>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

@@ -57,11 +57,15 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+                                    @if(Session::get('admin_session'))
+                                        <form action="{{url('switch-back') }}" method="POST">
+                                            @csrf
+                                            <button class="btn btn-sm btn-secondary m-2">Switch Back</button>
+                                        </form>
+                                    @endif
                                 </div>                            
                         @endif
                         </div>
