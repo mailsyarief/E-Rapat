@@ -49,9 +49,6 @@
                                     {{ Auth::user()->name }}
                                 </button>
                                 <div class="dropdown-menu mt-3" aria-labelledby="dd-header-add" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                    <a href="" class="dropdown-item">
-                                        Profile
-                                    </a>                
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
