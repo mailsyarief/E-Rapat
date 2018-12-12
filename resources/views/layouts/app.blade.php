@@ -106,7 +106,7 @@
 
                 <li class="dropdown dropdown-notifications">
                     <a href="#notifications-panel" class="dropdown-toggle" data-toggle="dropdown">
-                      <i data-count="{{ $notifications->count() }}" class="glyphicon glyphicon-bell notification-icon"></i>
+                      <i data-count="{{ $notifications->count() }}" class="glyphicon glyphicon-bell notification-icon"></i>  
                       <span class="lbl">Pemberitahuan</span>
                     </a>
 
@@ -117,8 +117,13 @@
                         <!-- TOUTES -->
                         @if($notifications)
                             @foreach($notifications as $notification)
+{{--                             @if(!$notifications)
+                            <a class="dropdown-item dropdown-notification-all
+                            " href="{{url('home')}}</a>
+                                @else --}}
                             <a class="dropdown-item dropdown-notification-all
                             " href="{{url('rapat/show/'.$notification->data['message_rapat_id'].'/'.$notification->id)}}">{{ $notification->data['message_title'] }}</a>
+                            {{-- @endif --}}
                             @endforeach
                         @endif
 
