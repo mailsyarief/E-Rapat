@@ -30,6 +30,11 @@ class RapatController extends Controller
     }    
 
     public function edit_rapat($id){ 
+
+        if (Auth::id()!= Rapat::find($id)->creator_id) {
+            return redirect('/');
+        }
+
         $user = User::all();       
         $data = [
             'rapat' => Rapat::find($id),
@@ -38,6 +43,7 @@ class RapatController extends Controller
             'user' => User::all(),
             'att' => Attachment::where('rapats_id', $id)->get(),
         ];
+
 
         //$idRapat = Rapat::find($id);
         //dd($idRapat);
@@ -262,6 +268,14 @@ class RapatController extends Controller
             'notulen' => DB::select('SELECT DISTINCT rapat_user.peserta_aktif FROM rapat_user, rapats WHERE rapat_user.user_id ='. Auth::id() .' AND rapat_user.rapat_id ='.$id.''),            
             'peserta' => DB::select('SELECT rapat_user.id, rapats.title, users.name, rapat_user.peserta_aktif FROM rapats, users, rapat_user WHERE rapat_user.user_id = users.id AND rapat_user.rapat_id = '.$id.' AND rapats.id = '.$id.'')
         ];
+
+        
+        if(!DB::select('SELECT * FROM rapat_user WHERE rapat_user.rapat_id ='.$id.' AND rapat_user.user_id ='.Auth::id()))
+        {
+            return redirect('/');
+        }
+        
+        
         // dd($data);
         return view('rapat.notulensi')->with('data', $data);
     }

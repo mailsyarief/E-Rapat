@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<a class="btn btn-sm btn-info m-2" href="{{ url('/notulensi/'.$data['rapat']->id)}}"><< Back</a>
 <div class="box-typical box-typical-padding">
     <div>
         <center>
@@ -88,9 +89,9 @@
                     @csrf
                         <input type="hidden" name="user_id" value="{{$peserta->user_id}}">
                         <input type="hidden" name="rapat_id" value="{{$peserta->id}}">
-                        @if($peserta->user_id != $data['rapat']->creator_id)
+                        {{-- @if($peserta->user_id != $data['rapat']->creator_id) --}}
                             <input type="submit" class="btn btn-sm btn-warning" value="Delete">
-                        @endif
+                        {{-- @endif --}}
                     </form>
                 </td>
             </tr>                
