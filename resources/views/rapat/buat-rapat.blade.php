@@ -144,11 +144,17 @@
                 $.each(return_value['peserta'], function(i){
                     console.log(return_value['peserta'][i].id);
                     if(return_value['peserta'][i].peserta_aktif === 0){
-                        $("#peserta option[value='" + return_value['peserta'][i].id + "']").prop("selected", true);
+                        // $("#peserta #poid"+return_value['peserta'][i].id).attr("selected","selected");
+                        // var hehe = $("#peserta #poid"+return_value['peserta'][i].id).val();
+                        // alert(hehe);
+                        // $("#peserta option[value="+ return_value['peserta'][i].id + "]").attr("selected","selected");
+                        var idnya = return_value['peserta'][i].id;
+                        $("#peserta option[value="+ idnya +"]").attr("selected","selected");
                         $("#form-group-peserta span span span ul").append('<li class="select2-selection__choice" title="'+return_value['peserta'][i].name+'"><span class="select2-selection__choice__remove" role="presentation">×</span>'+ return_value['peserta'][i].name +'</li>')
                     }
                     else{
-                        $("#notulen option[value='" + return_value['peserta'][i].id + "']").prop("selected", true);
+                        // $("#notulen option #noid"+return_value['peserta'][i].id).attr("selected","selected");
+                        $("#notulen option[value=" + return_value['peserta'][i].id + "]").attr("selected","selected");
                         $("#form-group-notulen span span span ul").append('<li class="select2-selection__choice" title="'+return_value['peserta'][i].name+'"><span class="select2-selection__choice__remove" role="presentation">×</span>'+ return_value['peserta'][i].name +'</li>')
                     }
                 });

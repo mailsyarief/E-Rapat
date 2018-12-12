@@ -179,7 +179,7 @@ class RapatController extends Controller
             return redirect()->back()->with("error","Maaf, mohon pisahkan peserta dan notulen");
         }
 
-        if(Auth::user()->role = 0){
+        if(Auth::user()->role == 0){
             if(!in_array(Auth::id(), $request->peserta) AND !in_array(Auth::id(), $request->notulen)){
                 return redirect()->back()->with("error","Maaf, pembuat rapat harus ada pada rapat");
             }            
@@ -279,7 +279,7 @@ class RapatController extends Controller
         $data = [
             'rapat' => Rapat::find($id),
             'notulen' => DB::select('SELECT DISTINCT rapat_user.peserta_aktif FROM rapat_user, rapats WHERE rapat_user.user_id ='. Auth::id() .' AND rapat_user.rapat_id ='.$id.''),            
-            'peserta' => DB::select('SELECT rapat_user.id, rapats.title, users.name, rapat_user.peserta_aktif FROM rapats, users, rapat_user WHERE rapat_user.user_id = users.id AND rapat_user.rapat_id = '.$id.' AND rapats.id = '.$id.'')
+            'peserta' => DB::select('SELECT users.id, rapats.title, users.name, rapat_user.peserta_aktif FROM rapats, users, rapat_user WHERE rapat_user.user_id = users.id AND rapat_user.rapat_id = '.$id.' AND rapats.id = '.$id.'')
         ];        
 
         return response()->json($data);
@@ -348,7 +348,7 @@ class RapatController extends Controller
                 foreach ($att as $file) {
                     $file_title = $file->at_title;
                     $file_path = public_path('attachment/'.$file_title);
-                    unlink($file_path);
+                    if(file_exists($file_path)) unlink($file_path);
                 }
             }
         
