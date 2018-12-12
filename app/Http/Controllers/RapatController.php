@@ -29,7 +29,8 @@ class RapatController extends Controller
         return view('rapat.buat-rapat')->with('user', $user)->with('rapat_saya', $rapat_saya);
     }    
 
-    public function edit_rapat($id){
+    public function edit_rapat($id){ 
+        $user = User::all();       
         $data = [
             'rapat' => Rapat::find($id),
             'notulen' => DB::select('SELECT DISTINCT rapat_user.peserta_aktif FROM rapat_user, rapats WHERE rapat_user.user_id ='. Auth::id() .' AND rapat_user.rapat_id ='.$id.''),            
@@ -37,7 +38,25 @@ class RapatController extends Controller
             'user' => User::all(),
             'att' => Attachment::where('rapats_id', $id)->get(),
         ];
-        // dd($data);        
+
+        //$idRapat = Rapat::find($id);
+        //dd($idRapat);
+
+        $id_user_update = DB::select('SELECT rapat_user.user_id FROM rapat_user WHERE rapat_user.rapat_id= '.$id.'');
+        //dd($id_user_update);
+            // for ($i=0; $i < $len_notulen ; $i++) { 
+            //     $peserta = User::find($request->notulen[$i]);
+            //     $peserta->notify(new Message($request->all()));
+            // }
+
+        $len_user=count($id_user_update);
+        
+        // for($i=0; $i<$len_user; $i++){
+        //     $user_update = User::find($id_user_update[$i]);
+        //     dd($user_update);
+        // }
+
+        //$id_user_update->notify(new Message($id_user_update));   
         return view('rapat.edit-rapat')->with('data', $data);
     }    
 
@@ -300,7 +319,7 @@ class RapatController extends Controller
         $notif = Notification::find($notif_id);
         $notif->read_at = Carbon::now();
         $notif->save();
-        return view('rapat.show')->with('rapat', $rapat);
+        return view('rapat.show',compact('id'))->with('rapat', $rapat);
     }
 
     public function manualsave(Request $request){
